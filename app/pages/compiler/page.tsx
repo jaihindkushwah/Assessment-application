@@ -7,12 +7,15 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import TestCaseTabs from "@/components/pages/compiler/TestCaseTabs";
+import ProblemSection from "@/components/pages/compiler/ProblemSection";
+import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 
 export function CompilerPage() {
   const isRunning = false;
 
   return (
     <div className="mt-2">
+      <DarkModeToggle fixed={"bottom-right"} />
       <ResizablePanelGroup
         direction="horizontal"
         className="w-screen h-screen rounded-lg border"
@@ -21,11 +24,7 @@ export function CompilerPage() {
           defaultSize={42}
           className="border-r-4 dark:border-slate-800 border-slate-300"
         >
-          <div className="flex h-[90vh] items-center justify-center p-6 overflow-x-hidden">
-            <span className="font-semibold">
-              #first section where problems will be visible
-            </span>
-          </div>
+          <ProblemSection />
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={58}>

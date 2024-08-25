@@ -56,11 +56,13 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           href={"/pages/dashboard"}
           className={buttonVariants({ variant: "default" })}
         >
-          Dashboard
+          About
         </Link>
         <Link
           href={"/pages/contact"}
-          className={buttonVariants({ variant: "default" })}
+          className={buttonVariants({
+            variant: "default",
+          })}
         >
           Contact
         </Link>
@@ -69,7 +71,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           className={buttonVariants({
             variant: "default",
             className:
-              "pt-1 pb-1 pl-1 pr-1 h-auto border-0 border-none rounded-none rounded-t-lg",
+              "pt-1 pb-1 pl-1 pr-1 h-auto border-0 border-none rounded-none rounded-t-lg dark:bg-inherit",
           })}
         >
           <PersonIcon className="w-7 h-7" />

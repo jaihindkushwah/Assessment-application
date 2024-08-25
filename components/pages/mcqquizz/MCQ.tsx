@@ -50,9 +50,6 @@ function McqQuiz() {
 
   return (
     <div className="flex items-center flex-col w-screen justify-center gap-10">
-      <div>
-        <span>Aptitude Test</span>
-      </div>
       <>
         <SingleMcq key={count} setAnswer={setCurrentAnswer} question={quiz} />
         <div>

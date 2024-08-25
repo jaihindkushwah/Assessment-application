@@ -11,22 +11,24 @@ export const HamburgerMenuPage = () => {
   };
 
   return (
-    <div className="w-screen relative sm:max-h-14 max-h-12 top-0">
+    <div className="max-w-screen relative sm:max-h-14 max-h-12 top-0 z-50 ">
       <HamburgerMenu
-        bgColor="dark:bg-slate-800 bg-indigo-900"
+        bgColor={` ${!open ? "bg-inherit" : "bg-indigo-900"}`}
         textColor="dark:text-white text-dark"
       >
         <HamburgerMenuBrand href="/">
-          <Image
-            // src="https://links.papareact.com/a943ae"
-            src={"/logo2.jpeg"}
-            alt="logo"
-            width={1920}
-            height={1080}
-            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28"
-          />
+          {!open ? (
+            <Image
+              // src="https://links.papareact.com/a943ae"
+              src={"/logo2.jpeg"}
+              alt="logo"
+              width={1920}
+              height={1080}
+              className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
+            />
+          ) : null}
         </HamburgerMenuBrand>
-        <HamburgerMenuToggler toggle={toggle} />
+        <HamburgerMenuToggler toggle={toggle} open={open} />
         <HamburgerMenuCollapse open={open}>
           <HamburgerMenuNav className="flex flex-col items-center sm:gap-4 gap-2">
             <HamburgerMenuItem>
@@ -34,7 +36,7 @@ export const HamburgerMenuPage = () => {
             </HamburgerMenuItem>
             <HamburgerMenuItem>
               <HamburgerMenuLink href="/pages/dashboard">
-                Dashboard
+                About
               </HamburgerMenuLink>
             </HamburgerMenuItem>
             <HamburgerMenuItem>
@@ -56,8 +58,8 @@ export const HamburgerMenuPage = () => {
 
 const style = {
   nav: `  pl-0 mb-0`,
-  navbar: ` md:hidden block font-light shadow py-2 px-4 z-50`,
-  collapse: `transition-height ease duration-300`,
+  navbar: ` md:hidden block font-light shadow py-1 sm:py-2 px-4 z-50`,
+  collapse: `transition-height ease-in-out duration-300`,
   toggler: `float-right pt-1.5 text-4xl focus:outline-none focus:shadow`,
   link: `block cursor-pointer sm:text-[16px] py-1.5 px-4  hover:text-gray-400 font-medium `,
   brand: `inline-block pt-1.5 pb-1.5 mr-4 cursor-pointer text-2xl font-bold whitespace-nowrap hover:text-gray-400`,
@@ -100,8 +102,13 @@ function HamburgerMenuBrand({
 
 interface HamburgerMenuTogglerProps extends HTMLAttributes<HTMLButtonElement> {
   toggle: () => void;
+  open: boolean;
 }
-function HamburgerMenuToggler({ toggle, ...props }: HamburgerMenuTogglerProps) {
+function HamburgerMenuToggler({
+  open,
+  toggle,
+  ...props
+}: HamburgerMenuTogglerProps) {
   return (
     <button
       type="button"
@@ -111,7 +118,11 @@ function HamburgerMenuToggler({ toggle, ...props }: HamburgerMenuTogglerProps) {
       onClick={toggle}
       {...props}
     >
-      &#8801;
+      {!open ? (
+        <span className="text-center">&#8801;</span>
+      ) : (
+        <span className="text-[24px] text-center ">&#x2715;</span>
+      )}
     </button>
   );
 }
