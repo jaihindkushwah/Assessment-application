@@ -4,6 +4,7 @@ import SocketProvider from "./Socket";
 import PeerProvider from "./Peer";
 import HeaderFooterProvider from "./HeaderFooter";
 import StoreProvider from "@/store/StoreProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 interface Props {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ function AppProvider({ children }: Props) {
         enableSystem
         disableTransitionOnChange
       >
+        <Toaster />
         <HeaderFooterProvider>
           <SocketProvider>
             <PeerProvider>{children}</PeerProvider>

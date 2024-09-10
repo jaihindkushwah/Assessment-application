@@ -28,10 +28,9 @@ function Quizz() {
         </div>
       </ResizablePanel>
       <ResizableHandle />
-      <ResizablePanel defaultSize={77.5}>
+      <ResizablePanel defaultSize={77.5} minSize={60}>
         <ResizablePanelGroup direction="vertical">
           <ResizablePanel className="border-b-2 dark:border-slate-800 border-slate-300">
-            {/* <CodeEditor /> */}
             <QuizHeader />
             <SingleQuestion />
           </ResizablePanel>

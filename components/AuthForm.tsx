@@ -54,9 +54,6 @@ export function AuthForm() {
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
-              {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}

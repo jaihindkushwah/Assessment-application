@@ -1,19 +1,13 @@
 "use client";
-// import Forget from "@/components/pages/auth/Forget";
-// import Login from "@/components/pages/auth/Login";
-// import Register from "@/components/pages/auth/Register";
-// import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
-export default function TabsDemo() {
+export default function AuthPage() {
   // const router = useRouter();
   const router = useRouter();
 
-  useEffect(() => {
-    router.push("/auth/login");
-  }, [router]);
+  // useEffect(() => {
+  router.push("/auth/login");
+  // }, [router]);
 
   return (
     <main className="flex justify-center  mt-14 sm:mt-32 max-w-screen max-h-screen">

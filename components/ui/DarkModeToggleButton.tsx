@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const darkModeToggleVariants = cva("", {
   variants: {
     fixed: {
-      default: "fixed bottom-1 right-1 md:hidden",
+      default: "fixed bottom-1 right-1 md:hidden z-50",
       "top-right": "fixed top-1 right-1",
       "top-left": "fixed top-1 left-1",
       "bottom-right": "fixed bottom-1 right-1 ",

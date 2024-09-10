@@ -16,12 +16,14 @@ export interface UserProfile {
 }
 interface AuthSlice {
   profile: UserProfile | null;
-  loggedIn: string;
+  loggedIn: boolean;
+  token: string | null;
 }
 
 const initialState: AuthSlice = {
   profile: null,
-  loggedIn: "false",
+  loggedIn: false,
+  token: null,
 };
 
 const slice = createSlice({
@@ -34,10 +36,14 @@ const slice = createSlice({
     updateLoggedInState: (state, { payload }) => {
       state.loggedIn = payload;
     },
+    updateToken: (state, { payload }) => {
+      state.token = payload;
+    },
   },
 });
 
-export const { updateLoggedInState, updateProfile } = slice.actions;
+export const { updateLoggedInState, updateProfile, updateToken } =
+  slice.actions;
 
 export default slice.reducer;
 

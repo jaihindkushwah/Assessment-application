@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false, // default value is true
   images: {
     remotePatterns: [
       {
@@ -10,6 +10,10 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "image.tmdb.org",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.aceternity.com",
       },
     ],
   },

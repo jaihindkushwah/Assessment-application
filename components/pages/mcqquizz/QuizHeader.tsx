@@ -4,7 +4,6 @@ import React from "react";
 function QuizHeader() {
   return (
     <header className="flex justify-end p-3 gap-2">
-      {/* Name,email, avatar,roll no, timer */}
       <span className="mr-2.5">
         <h1>Timer</h1>
         <h1>60:00</h1>
@@ -20,7 +19,7 @@ function QuizHeader() {
       <Avatar className="w-16 h-16">
         <AvatarImage
           className="h-full w-full"
-          //  src="https://github.com/shadcn.png"
+          src="https://github.com/shadcn.png"
           alt="@shadcn"
         />
         <AvatarFallback className="h-full w-full">AM</AvatarFallback>

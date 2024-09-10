@@ -12,6 +12,6 @@ export default function StoreProvider({
   //   // Create the store instance the first time this renders
   //   storeRef.current = makeStore();
   // }
-  // return <Provider store={storeRef.current}>{children}</Provider>;
+  // return <Provider store={storeRef.current}>{children}</Provider>
   return <Provider store={store}>{children}</Provider>;
 }

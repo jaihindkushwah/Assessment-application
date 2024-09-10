@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 
-// import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -33,7 +32,7 @@ const FormSchema = z.object({
 function Login() {
   const { handleLogin, loginError } = useLogin();
   const authState = useSelector(getAuthState);
-  console.log("authState", authState);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -87,7 +86,7 @@ function Login() {
                 <FormItem>
                   <FormLabel>Password:</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" {...field} />
+                    <Input type="password" placeholder="Password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

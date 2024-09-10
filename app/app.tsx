@@ -1,10 +1,9 @@
 "use client";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import { HamburgerMenuPage } from "@/components/HumbergerMenu";
+// import Footer from "@/components/Footer";
+// import Header from "@/components/Header";
+// import { HamburgerMenuPage } from "@/components/HumbergerMenu";
 import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 import React from "react";
-import AppMasterProvider from "@/contexts/AppProvider";
 import { useHeaderFooter } from "@/contexts/HeaderFooter";
 
 function App({
@@ -12,18 +11,18 @@ function App({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isFooterVisible, isHeaderVisible } = useHeaderFooter();
+  // const { isFooterVisible, isHeaderVisible } = useHeaderFooter();
   return (
     <div className="min-h-screen flex flex-col">
-      {isHeaderVisible ? (
+      {/* {isHeaderVisible ? (
         <>
           <Header />
           <HamburgerMenuPage />
         </>
-      ) : null}
+      ) : null} */}
       {children}
       <DarkModeToggle fixed={"default"} />
-      {isFooterVisible ? <Footer /> : null}
+      {/* {isFooterVisible ? <Footer /> : null} */}
     </div>
   );
 }

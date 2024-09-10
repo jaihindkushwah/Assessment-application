@@ -22,21 +22,23 @@ export function CompilerPage() {
       >
         <ResizablePanel
           defaultSize={42}
+          minSize={20}
           className="border-r-4 dark:border-slate-800 border-slate-300"
         >
           <ProblemSection />
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={58}>
+        <ResizablePanel defaultSize={58} minSize={30}>
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel
               defaultSize={75}
+              minSize={10}
               className="border-b-2 dark:border-slate-800 border-slate-300"
             >
               <CodeEditor />
             </ResizablePanel>
             <ResizableHandle />
-            <ResizablePanel defaultSize={25}>
+            <ResizablePanel defaultSize={25} minSize={10}>
               {/* show skeleton when user click to run the code or submit */}
               <div className="">
                 {isRunning ? <CodeRunSkeleton /> : <TestCaseTabs />}

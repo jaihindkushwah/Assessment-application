@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { updateLoggedInState, updateProfile } from "@/store/auth";
+import { updateLoggedInState, updateProfile, updateToken } from "@/store/auth";
 interface LoginInputs {
   email: string;
   password: string;
@@ -26,6 +26,8 @@ function useLogin() {
       console.log("data", await data);
       dispatch(updateProfile(data.user));
       dispatch(updateLoggedInState(true));
+      dispatch(updateToken(data.token));
+      localStorage.setItem("token", data.token);
     } catch (error: any) {
       const errorMsg = error.response.data.message;
       if (errorMsg) {

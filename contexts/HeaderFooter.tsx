@@ -27,30 +27,29 @@ const headerHideList = [
   "/auth",
   "/auth/login",
   "/auth/register",
-  "/pages/compiler",
-  "/pages/mcq",
+  "/pages/protected/compiler",
+  "/pages/protected/mcq",
 ];
 const footerHideList = [
   "/auth",
   "/auth/login",
   "/auth/register",
   "/auth/create-new-password",
-  "/pages/compiler",
-  "/pages/mcq",
+  "/pages/protected",
 ];
 
 export default function HeaderFooterProvider({ children }: Props) {
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [isFooterVisible, setIsFooterVisible] = useState<boolean>(true);
   const path = usePathname();
-  // const params = useParams();
 
   useEffect(() => {
-    // console.log(params);
     console.log({ path });
+
     const isHeaderVisible = !headerHideList.includes(path);
     const isFooterVisible = !footerHideList.includes(path);
-    if (path.startsWith("/auth")) {
+    const isProtected: boolean = path.startsWith("/pages/protected");
+    if (path.startsWith("/auth") || isProtected) {
       setIsHeaderVisible(false);
       setIsFooterVisible(false);
       return;
