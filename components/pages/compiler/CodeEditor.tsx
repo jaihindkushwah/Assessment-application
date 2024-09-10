@@ -8,13 +8,14 @@ interface CodeEditorProps {}
 
 function CodeEditor({}: CodeEditorProps) {
   const [fontSize, setFontSize] = React.useState(16);
-  const [language, setLanguage] = React.useState<LanguageKey>("javascript");
+  const [language, setLanguage] = React.useState<LanguageKey>("java");
   const options = { fontSize };
   const { currentTheme } = useCurrentTheme();
 
   return (
     <div className="flex h-full items-center justify-center flex-col">
       <CodeEditorNavbar
+        language={language}
         fontSize={fontSize}
         setLanguage={(value) => {
           setLanguage(value as LanguageKey);
@@ -22,7 +23,7 @@ function CodeEditor({}: CodeEditorProps) {
         setFontSize={setFontSize}
       />
       <Editor
-        defaultLanguage="javascript"
+        defaultLanguage={language}
         language={language}
         height={"100%"}
         theme={"vs-" + currentTheme}

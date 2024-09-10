@@ -7,37 +7,38 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import TestCaseTabs from "@/components/pages/compiler/TestCaseTabs";
+import ProblemSection from "@/components/pages/compiler/ProblemSection";
+import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 
 export function CompilerPage() {
   const isRunning = false;
 
   return (
     <div className="mt-2">
+      <DarkModeToggle fixed={"bottom-right"} />
       <ResizablePanelGroup
         direction="horizontal"
         className="w-screen h-screen rounded-lg border"
       >
         <ResizablePanel
           defaultSize={42}
+          minSize={20}
           className="border-r-4 dark:border-slate-800 border-slate-300"
         >
-          <div className="flex h-[90vh] items-center justify-center p-6 overflow-x-hidden">
-            <span className="font-semibold">
-              #first section where problems will be visible
-            </span>
-          </div>
+          <ProblemSection />
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={58}>
+        <ResizablePanel defaultSize={58} minSize={30}>
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel
               defaultSize={75}
+              minSize={10}
               className="border-b-2 dark:border-slate-800 border-slate-300"
             >
               <CodeEditor />
             </ResizablePanel>
             <ResizableHandle />
-            <ResizablePanel defaultSize={25}>
+            <ResizablePanel defaultSize={25} minSize={10}>
               {/* show skeleton when user click to run the code or submit */}
               <div className="">
                 {isRunning ? <CodeRunSkeleton /> : <TestCaseTabs />}

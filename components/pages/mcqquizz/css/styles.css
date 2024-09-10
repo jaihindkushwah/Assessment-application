@@ -1,0 +1,63 @@
+/* #QuizSection h1 {
+} */
+/* custom.css */
+#QuizSection::-webkit-scrollbar {
+  width: 3px;
+  /* padding: 13px 0px; */
+}
+
+/* Track */
+/* #QuizSection::-webkit-scrollbar-track {
+  background: #888;
+} */
+
+/* Handle */
+#QuizSection::-webkit-scrollbar-thumb {
+  /* background: #f1f1f1; */
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+#QuizSection::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#QuizSection h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#QuizSection p {
+  margin-bottom: 1rem;
+}
+
+#QuizSection code {
+  /* background-color: #f3f4f6;  */
+  /* Light gray background for inline code */
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#QuizSection pre {
+  /* background-color: #f9fafb; */
+  /* Light gray background for code blocks */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+#QuizSection strong {
+  font-weight: bold;
+}
+
+#QuizSection ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+#QuizSection li {
+  margin-bottom: 0.5rem;
+}

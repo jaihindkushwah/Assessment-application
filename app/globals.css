@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,4 +72,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::-webkit-scrollbar-thumb {
+  background: #133f7d;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }

@@ -1,9 +1,3 @@
-import React from 'react'
-
-function ContactPage() {
-  return (
-    <div>ContactPage</div>
-  )
+export default function ContactPage() {
+  return <div className="py-8"></div>;
 }
-
-export default ContactPage

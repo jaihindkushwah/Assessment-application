@@ -2,39 +2,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { HTMLAttributes, ReactNode } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export const HamburgerMenuPage = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const toggle = () => {
-    setOpen((prevState) => !prevState);
-  };
-
   return (
-    <div className="w-screen relative sm:max-h-14 max-h-12 top-0">
-      <HamburgerMenu
-        bgColor="dark:bg-slate-800 bg-indigo-900"
-        textColor="dark:text-white text-dark"
-      >
-        <HamburgerMenuBrand href="/">
+    <HamburgerMenu bgColor={`bg-inherit`} textColor="dark:text-white text-dark">
+      <Sheet>
+        <span className="flex justify-between items-center">
           <Image
             // src="https://links.papareact.com/a943ae"
             src={"/logo2.jpeg"}
             alt="logo"
             width={1920}
             height={1080}
-            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28"
+            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
           />
-        </HamburgerMenuBrand>
-        <HamburgerMenuToggler toggle={toggle} />
-        <HamburgerMenuCollapse open={open}>
+          <SheetTrigger>
+            <span className="text-center text-4xl ">&#8801;</span>
+          </SheetTrigger>
+        </span>
+        <SheetContent side="top">
           <HamburgerMenuNav className="flex flex-col items-center sm:gap-4 gap-2">
             <HamburgerMenuItem>
               <HamburgerMenuLink href="/">Home</HamburgerMenuLink>
             </HamburgerMenuItem>
             <HamburgerMenuItem>
               <HamburgerMenuLink href="/pages/dashboard">
-                Dashboard
+                About
               </HamburgerMenuLink>
             </HamburgerMenuItem>
             <HamburgerMenuItem>
@@ -46,18 +40,69 @@ export const HamburgerMenuPage = () => {
               <HamburgerMenuLink href="/auth">Login</HamburgerMenuLink>
             </HamburgerMenuItem>
           </HamburgerMenuNav>
-        </HamburgerMenuCollapse>
-      </HamburgerMenu>
-    </div>
+        </SheetContent>
+      </Sheet>
+    </HamburgerMenu>
   );
 };
+
+// export const HamburgerMenuPages = () => {
+//   const [open, setOpen] = React.useState(false);
+
+//   const toggle = () => {
+//     setOpen((prevState) => !prevState);
+//   };
+
+//   return (
+//     <div className="max-w-screen relative sm:max-h-14 max-h-12 top-0 z-50 ">
+//       <HamburgerMenu
+//         bgColor={` ${!open ? "bg-inherit" : "bg-indigo-900"}`}
+//         textColor="dark:text-white text-dark"
+//       >
+//         <HamburgerMenuBrand href="/">
+//           {!open ? (
+//             <Image
+//               // src="https://links.papareact.com/a943ae"
+//               src={"/logo2.jpeg"}
+//               alt="logo"
+//               width={1920}
+//               height={1080}
+//               className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
+//             />
+//           ) : null}
+//         </HamburgerMenuBrand>
+//         <HamburgerMenuToggler toggle={toggle} open={open} />
+//         <HamburgerMenuCollapse open={open}>
+//           <HamburgerMenuNav className="flex flex-col items-center sm:gap-4 gap-2">
+//             <HamburgerMenuItem>
+//               <HamburgerMenuLink href="/">Home</HamburgerMenuLink>
+//             </HamburgerMenuItem>
+//             <HamburgerMenuItem>
+//               <HamburgerMenuLink href="/pages/dashboard">
+//                 About
+//               </HamburgerMenuLink>
+//             </HamburgerMenuItem>
+//             <HamburgerMenuItem>
+//               <HamburgerMenuLink href="/pages/contact">
+//                 Contact
+//               </HamburgerMenuLink>
+//             </HamburgerMenuItem>
+//             <HamburgerMenuItem>
+//               <HamburgerMenuLink href="/auth">Login</HamburgerMenuLink>
+//             </HamburgerMenuItem>
+//           </HamburgerMenuNav>
+//         </HamburgerMenuCollapse>
+//       </HamburgerMenu>
+//     </div>
+//   );
+// };
 
 /* Logic */
 
 const style = {
   nav: `  pl-0 mb-0`,
-  navbar: ` md:hidden block font-light shadow py-2 px-4 z-50`,
-  collapse: `transition-height ease duration-300`,
+  navbar: ` md:hidden block font-light  py-1 sm:py-2 px-4 z-50`,
+  collapse: `transition-height ease-in-out duration-300`,
   toggler: `float-right pt-1.5 text-4xl focus:outline-none focus:shadow`,
   link: `block cursor-pointer sm:text-[16px] py-1.5 px-4  hover:text-gray-400 font-medium `,
   brand: `inline-block pt-1.5 pb-1.5 mr-4 cursor-pointer text-2xl font-bold whitespace-nowrap hover:text-gray-400`,
@@ -98,54 +143,63 @@ function HamburgerMenuBrand({
   );
 }
 
-interface HamburgerMenuTogglerProps extends HTMLAttributes<HTMLButtonElement> {
-  toggle: () => void;
-}
-function HamburgerMenuToggler({ toggle, ...props }: HamburgerMenuTogglerProps) {
-  return (
-    <button
-      type="button"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      className={style.toggler}
-      onClick={toggle}
-      {...props}
-    >
-      &#8801;
-    </button>
-  );
-}
+// interface HamburgerMenuTogglerProps extends HTMLAttributes<HTMLButtonElement> {
+//   toggle: () => void;
+//   open: boolean;
+// }
+// function HamburgerMenuToggler({
+//   open,
+//   toggle,
+//   ...props
+// }: HamburgerMenuTogglerProps) {
+//   return (
+//     <button
+//       type="button"
+//       aria-expanded="false"
+//       aria-label="Toggle navigation"
+//       className={style.toggler}
+//       onClick={toggle}
+//       {...props}
+//     >
+//       {!open ? (
+//         <span className="text-center">&#8801;</span>
+//       ) : (
+//         <span className="text-[24px] text-center ">&#x2715;</span>
+//       )}
+//     </button>
+//   );
+// }
 
 interface HamburgerMenuCollapseProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
   children: ReactNode;
 }
-function HamburgerMenuCollapse({
-  children,
-  open,
-  ...props
-}: HamburgerMenuCollapseProps) {
-  const ref = React.useRef<HTMLDivElement>(null);
+// function HamburgerMenuCollapse({
+//   children,
+//   open,
+//   ...props
+// }: HamburgerMenuCollapseProps) {
+//   const ref = React.useRef<HTMLDivElement>(null);
 
-  const inlineStyle = open
-    ? {
-        height: ref.current?.scrollHeight,
-        visibility: "visible" as "visible",
-        opacity: 1,
-      }
-    : { height: 0, visibility: "hidden" as "hidden", opacity: 0 };
+//   const inlineStyle = open
+//     ? {
+//         height: ref.current?.scrollHeight,
+//         visibility: "visible" as "visible",
+//         opacity: 1,
+//       }
+//     : { height: 0, visibility: "hidden" as "hidden", opacity: 0 };
 
-  return (
-    <div
-      className={style.collapse}
-      style={{ ...inlineStyle }}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
+//   return (
+//     <div
+//       className={style.collapse}
+//       style={{ ...inlineStyle }}
+//       ref={ref}
+//       {...props}
+//     >
+//       {children}
+//     </div>
+//   );
+// }
 
 interface HamburgerMenuNavProps extends HTMLAttributes<HTMLUListElement> {
   children: ReactNode;

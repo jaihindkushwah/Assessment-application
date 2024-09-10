@@ -1,30 +1,29 @@
-import Header from "@/components/Header";
-import { HamburgerMenuPage } from "@/components/HumbergerMenu";
-import { ThemeProvider } from "@/components/ThemeProvider";
+"use client";
+// import Footer from "@/components/Footer";
+// import Header from "@/components/Header";
+// import { HamburgerMenuPage } from "@/components/HumbergerMenu";
 import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 import React from "react";
+import { useHeaderFooter } from "@/contexts/HeaderFooter";
 
 function App({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const { isFooterVisible, isHeaderVisible } = useHeaderFooter();
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <div className="min-h-screen">
-        <Header />
-        <HamburgerMenuPage />
-        {children}
-        <span className="fixed bottom-1 right-1 md:hidden">
-          <DarkModeToggle />
-        </span>
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen flex flex-col">
+      {/* {isHeaderVisible ? (
+        <>
+          <Header />
+          <HamburgerMenuPage />
+        </>
+      ) : null} */}
+      {children}
+      <DarkModeToggle fixed={"default"} />
+      {/* {isFooterVisible ? <Footer /> : null} */}
+    </div>
   );
 }
 

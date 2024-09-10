@@ -6,9 +6,15 @@ import { buttonVariants } from "./ui/MyButton";
 import { DarkModeToggle } from "./ui/DarkModeToggleButton";
 import Image from "next/image";
 import { PersonIcon } from "@radix-ui/react-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const headerVariants = cva(
-  "md:flex gap-5 items-center justify-between  flex-wrap hidden px-10 py-3 pr-5 transition-all ease-in-out",
+  "md:flex gap-5 items-center justify-between z-50 bg-transparent  flex-wrap hidden px-10 py-3 pr-5 transition-all ease-in-out",
   {
     variants: {
       variant: {
@@ -29,12 +35,12 @@ interface HeaderProps
     VariantProps<typeof headerVariants> {}
 
 const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
-  { ...props },
+  { className, ...props },
   ref: Ref<HTMLElement>
 ) {
   return (
     <header
-      className={cn(headerVariants({ variant: "default" }))}
+      className={cn(headerVariants({ variant: "default", className }))}
       {...props}
       ref={ref}
     >
@@ -53,14 +59,16 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           Home
         </Link>
         <Link
-          href={"/pages/dashboard"}
+          href={"/#about"}
           className={buttonVariants({ variant: "default" })}
         >
-          Dashboard
+          About
         </Link>
         <Link
-          href={"/pages/contact"}
-          className={buttonVariants({ variant: "default" })}
+          href={"/#contact"}
+          className={buttonVariants({
+            variant: "default",
+          })}
         >
           Contact
         </Link>
@@ -69,10 +77,19 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           className={buttonVariants({
             variant: "default",
             className:
-              "pt-1 pb-1 pl-1 pr-1 h-auto border-0 border-none rounded-none rounded-t-lg",
+              "pt-1 pb-1 pl-1 pr-1 h-auto border-0 border-none rounded-none rounded-t-lg dark:bg-inherit",
           })}
         >
-          <PersonIcon className="w-7 h-7" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <PersonIcon className="w-7 h-7" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Go To Account</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </Link>
         <DarkModeToggle />
       </span>

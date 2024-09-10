@@ -5,6 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import App from "./app";
+import AppMasterProvider from "@/contexts/AppProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(fontSans.variable)}>
-        <App>{children}</App>
+        <AppMasterProvider>
+          <App>{children}</App>
+        </AppMasterProvider>
       </body>
     </html>
   );

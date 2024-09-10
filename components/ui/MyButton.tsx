@@ -3,12 +3,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes, forwardRef, Ref } from "react";
 
 const buttonVariants = cva(
-  "active:scale-95 text-center active:duration-75 transition-all ease-in-out ",
+  "active:scale-95 text-center active:duration-75 transition-all ease-in-out dark:bg-inherit ",
   {
     variants: {
       variant: {
         default:
-          "dark:bg-black rounded-full flex items-center bg-white bg-slate-900 text-black dark:text-white  text-center dark:hover:bg-slate-700 hover:bg-slate-300 dark:border-white border-black",
+          "dark:bg-black rounded-full flex items-center bg-white bg-slate-900 text-black dark:text-white  text-center dark:hover:bg-blue-800/50 hover:bg-slate-300/80 dark:border-white border-black",
         primary: "bg-sky-500 text-white",
         secondary: "bg-slate-500 text-white",
         danger: "bg-red-500 text-white",

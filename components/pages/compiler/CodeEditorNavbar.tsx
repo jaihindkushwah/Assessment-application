@@ -14,6 +14,7 @@ import CustomTooltip from "./ui/tooltip";
 interface EditorNavProps {
   fontSize: number;
   setFontSize: any;
+  language?: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -21,11 +22,12 @@ export function CodeEditorNavbar({
   fontSize,
   setFontSize,
   setLanguage,
+  language,
 }: EditorNavProps) {
   return (
     <nav className="h-8 w-full px-5 pl-6 mb-1 mt-1 flex justify-between items-center gap-2">
       <span className="flex gap-3 items-center">
-        <Select defaultValue="javascript" onValueChange={(e) => setLanguage(e)}>
+        <Select defaultValue={language} onValueChange={(e) => setLanguage(e)}>
           <SelectTrigger className="w-[120px] h-7 focus:ring-0 focus:ring-none focus:ring-offset-0">
             <SelectValue placeholder="language" />
           </SelectTrigger>

@@ -1,8 +1,5 @@
-"use client";
-import { useRef } from "react";
+import LandingPage from "@/components/pages/landing/LandingPage";
 
 export default function Home() {
-  const ref = useRef<HTMLButtonElement>(null);
-  // const toggleColor = () => {};
-  return <main className="min-h-screen "></main>;
+  return <LandingPage />;
 }
