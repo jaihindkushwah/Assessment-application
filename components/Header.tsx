@@ -44,7 +44,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
       {...props}
       ref={ref}
     >
-      <Link href={"/"}>
+      <Link href={"/"} className="z-40">
         <Image
           // src="https://links.papareact.com/a943ae"
           src={"/logo2.jpeg"}
@@ -73,7 +73,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           Contact
         </Link>
         <Link
-          href={"/auth"}
+          href={"/auth/login"}
           className={buttonVariants({
             variant: "default",
             className:

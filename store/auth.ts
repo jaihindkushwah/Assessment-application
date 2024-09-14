@@ -49,5 +49,7 @@ export default slice.reducer;
 
 export const getAuthState = createSelector(
   (state: RootState) => state.auth,
-  (authState) => authState
+  (authState) => ({
+    ...authState,
+  })
 );
