@@ -25,8 +25,8 @@ export function CodeEditorNavbar({
   language,
 }: EditorNavProps) {
   return (
-    <nav className="h-8 w-full px-5 pl-6 mb-1 mt-1 flex justify-between items-center gap-2">
-      <span className="flex gap-3 items-center">
+    <nav className=" w-full pb-1 pr-6  mt-2 rounded-t-lg flex justify-between pl-2 border-2 border-slate-200 dark:border-0 items-center gap-2">
+      <span className="flex gap-3 items-center  ">
         <Select defaultValue={language} onValueChange={(e) => setLanguage(e)}>
           <SelectTrigger className="w-[120px] h-7 focus:ring-0 focus:ring-none focus:ring-offset-0">
             <SelectValue placeholder="language" />
@@ -55,13 +55,13 @@ export function CodeEditorNavbar({
       <span className="flex gap-2">
         <Button
           variant={"default"}
-          className="h-7 rounded-full active:scale-95 text-center active:duration-75 transition-all ease-in-out"
+          className="h-6 rounded-full text-[12px] font-medium active:scale-95 text-center active:duration-75 transition-all ease-in-out"
         >
           Run
         </Button>
         <Button
           variant={"default"}
-          className="h-7 rounded-full active:scale-95 text-center active:duration-75 transition-all ease-in-out"
+          className="h-6 rounded-full text-[12px] font-medium active:scale-95 text-center active:duration-75 transition-all ease-in-out"
         >
           Submit
         </Button>

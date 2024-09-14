@@ -4,9 +4,9 @@ function ProblemSection() {
   return (
     <section
       id="ProblemSection"
-      className="max-h-[98vh] overflow-scroll overflow-x-hidden p-10 font-sans dark:text-slate-300/90"
+      className="max-h-[98vh] overflow-scroll overflow-x-hidden p-10 font-sans dark:text-white"
     >
-      <h3>First Missing Positive:</h3>
+      <h3>First Missing Positive</h3>
       <p>
         Given an unsorted integer array <code>nums</code>. Return the{" "}
         <em>smallest positive integer</em> that is <em>not present</em> in{" "}

@@ -14,33 +14,41 @@ export function CompilerPage() {
   const isRunning = false;
 
   return (
-    <div className="mt-2">
+    <div className="dark:bg-black bg-[#f0f0f0] pt-3">
       <DarkModeToggle fixed={"bottom-right"} />
       <ResizablePanelGroup
         direction="horizontal"
-        className="w-screen h-screen rounded-lg border"
+        className="w-screen h-screen p-2"
       >
         <ResizablePanel
           defaultSize={42}
           minSize={20}
-          className="border-r-4 dark:border-slate-800 border-slate-300"
+          className="border-r-4 dark:border-r-transparent rounded-lg dark:bg-[#262626] bg-white"
         >
           <ProblemSection />
         </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel defaultSize={58} minSize={30}>
+        <ResizableHandle className="bg-inherit hover:bg-blue-500 rounded-lg w-[3px]" />
+        <ResizablePanel
+          defaultSize={58}
+          minSize={30}
+          className="ml-1 rounded-lg"
+        >
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel
-              defaultSize={75}
+              defaultSize={60}
               minSize={10}
-              className="border-b-2 dark:border-slate-800 border-slate-300"
+              className="mb-1 dark:bg-[#262626] rounded-lg"
             >
               <CodeEditor />
             </ResizablePanel>
-            <ResizableHandle />
-            <ResizablePanel defaultSize={25} minSize={10}>
+            <ResizableHandle className="bg-inherit  hover:bg-blue-500 rounded-lg w-1" />
+            <ResizablePanel
+              defaultSize={39}
+              minSize={10}
+              className="rounded-lg dark:bg-[#262626] mt-1"
+            >
               {/* show skeleton when user click to run the code or submit */}
-              <div className="">
+              <div className="p-1">
                 {isRunning ? <CodeRunSkeleton /> : <TestCaseTabs />}
               </div>
             </ResizablePanel>

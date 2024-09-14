@@ -6,7 +6,6 @@ function Page() {
   return (
     <div>
       <header className="absolute top-2 right-2">
-        {/* link dropdown to move to register, forget password */}
         <span className="flex gap-4 items-center">
           <Link href={"/auth/register"}>Register</Link>
           <Link href={"/auth/forget"}>Forget Password</Link>

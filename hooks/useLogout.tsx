@@ -28,6 +28,7 @@ function useLogout() {
       localStorage.removeItem("token");
     } catch (error) {}
   }, [dispatch, token]);
+
   return { logoutHandler };
 }
 

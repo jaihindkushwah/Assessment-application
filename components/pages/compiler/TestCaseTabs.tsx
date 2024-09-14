@@ -6,14 +6,18 @@ import TestOutput from "./TestOutput";
 function TestCaseTabs() {
   return (
     <Tabs defaultValue="input" className="w-full h-full">
-      <TabsList className="border-0 p-0 h-0">
-        <TabsTrigger value="input">Test Cases</TabsTrigger>
-        <TabsTrigger value="output">Test Output</TabsTrigger>
+      <TabsList className="bg-inherit pb-0 pt-0">
+        <TabsTrigger className="px-2 py-1" value="input">
+          Test Cases
+        </TabsTrigger>
+        <TabsTrigger className="px-2 py-1" value="output">
+          Test Output
+        </TabsTrigger>
       </TabsList>
-      <TabsContent value="input">
+      <TabsContent className="mt-0" value="input">
         <TestCasesInput />
       </TabsContent>
-      <TabsContent value="output">
+      <TabsContent className="mt-0" value="output">
         <TestOutput />
       </TabsContent>
     </Tabs>

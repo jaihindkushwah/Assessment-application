@@ -4,7 +4,7 @@ import useProfile from "@/hooks/useProfile";
 import { getAuthState } from "@/store/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 interface Props {

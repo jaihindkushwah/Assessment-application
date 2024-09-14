@@ -19,18 +19,32 @@ import {
 const links: SidebarLinkProps[] = [
   {
     label: "Dashboard",
-    href: "#",
+    href: "?route=dashboard",
     icon: (
       <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
   },
   {
     label: "Programming Arena",
-    href: "/pages/protected/dsa",
+    href: "#",
     icon: (
       <IconDeviceImacCode className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
     sub_links: [
+      {
+        label: "All DSA Challenges",
+        href: "?route=dsachallenges",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Live DSA Challenges",
+        href: "?route=livedsachallenges",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
       {
         label: "Try Compiler",
         href: "/pages/protected/compiler",
@@ -42,14 +56,35 @@ const links: SidebarLinkProps[] = [
   },
   {
     label: "Quiz Arena",
-    href: "/pages/protected/quiz",
+    href: "#",
     icon: (
       <IconHourglass className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
     sub_links: [
       {
-        label: "Try Compiler",
-        href: "/pages/protected/compiler",
+        label: "Online Quiz Test",
+        href: "?route=onlinequiz",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Aptitude Quiz",
+        href: "?route=aptitude",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Programming Quiz",
+        href: "?route=programming",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Try MCQ Arena",
+        href: "/pages/protected/mcq",
         icon: (
           <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
@@ -65,8 +100,7 @@ const links: SidebarLinkProps[] = [
   },
   {
     label: "Leaderboard",
-    // href: "/pages/protected/leaderboard",
-    href: "#",
+    href: "?route=leaderboard",
     icon: (
       <IconTrophy className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
@@ -128,15 +162,19 @@ export const AccordionSidebarLink = ({ links }: AccordionSidebarLinkProps) => {
   return (
     <Accordion type="single" collapsible>
       {!links.sub_links ? (
-        <SidebarLink link={links} />
+        <SidebarLink className="text-base" link={links} />
       ) : (
         <AccordionItem value="item-1" className="border-0">
           <AccordionTrigger className="hover:no-underline py-2">
-            <SidebarLink link={links} />
+            <SidebarLink className="text-base" link={links} />
           </AccordionTrigger>
           <AccordionContent>
             {links.sub_links?.map((link, idx) => (
-              <SidebarLink key={idx + links.label} link={link} />
+              <SidebarLink
+                className="text-sm"
+                key={idx + links.label}
+                link={link}
+              />
             ))}
           </AccordionContent>
         </AccordionItem>
