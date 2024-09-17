@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { dashboardRouteHandler } from "./route";
 import ProtectedHeader from "../components/ProtectedHeader";
-import PromotionalBanner from "./PromotionalBanner";
+// import PromotionalBanner from "./PromotionalBanner";
 
 function Dashboard() {
   const params = useSearchParams();

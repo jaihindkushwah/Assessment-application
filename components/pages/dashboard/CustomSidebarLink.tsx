@@ -33,7 +33,7 @@ const links: SidebarLinkProps[] = [
     sub_links: [
       {
         label: "All DSA Challenges",
-        href: "?route=dsachallenges",
+        href: "?route=explore",
         icon: (
           <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),

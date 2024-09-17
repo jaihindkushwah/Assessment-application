@@ -3,7 +3,7 @@ import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 import useProfile from "@/hooks/useProfile";
 import { getAuthState } from "@/store/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -11,10 +11,10 @@ interface Props {
   children: React.ReactNode;
 }
 function Layout({ children }: Props) {
-  const router = useRouter();
   const { getProfileDetails } = useProfile();
   const { loggedIn } = useSelector(getAuthState);
 
+  // console.log(pathName);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token && !loggedIn) {
@@ -24,9 +24,9 @@ function Layout({ children }: Props) {
 
   useEffect(() => {
     if (loggedIn) {
-      router.replace("/pages/protected/dashboard");
+      redirect("/pages/protected/dashboard");
     }
-  }, [loggedIn, router]);
+  }, [loggedIn]);
 
   return (
     <div>

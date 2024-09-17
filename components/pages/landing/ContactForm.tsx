@@ -229,10 +229,10 @@ function ContactForm() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               <Button
                 type="submit"
-                className="w-full md:w-1/3 sm:w-1/2 text-[14px] font-normal hover:bg-slate-200 border text-black bg-white"
+                className="w-full md:w-1/3 sm:w-1/2 text-[14px] font-normal hover:bg-slate-200 border text-black bg-[#f0f0f0]"
               >
                 Submit your message
               </Button>

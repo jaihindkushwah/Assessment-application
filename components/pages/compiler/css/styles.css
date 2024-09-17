@@ -23,7 +23,7 @@
   background: #555;
 }
 
-#ProblemSection h3 {
+/* #ProblemSection h3 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -36,16 +36,12 @@
 }
 
 #ProblemSection code {
-  /* background-color: #f3f4f6;  */
-  /* Light gray background for inline code */
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-family: "Courier New", Courier, monospace;
 }
 
 #ProblemSection pre {
-  /* background-color: #f9fafb; */
-  /* Light gray background for code blocks */
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -62,4 +58,8 @@
 
 #ProblemSection li {
   margin-bottom: 0.5rem;
+} */
+
+#ProblemSection strong {
+  font-weight: bold;
 }

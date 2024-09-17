@@ -23,9 +23,6 @@ function ContactSection() {
         <div className="w-full mt-4 rounded-full">
           <iframe
             className="aspect-square sm:aspect-video w-full rounded-md"
-            // width="100%"
-            // height="400"
-            // frameborder="0"
             frameBorder={0}
             scrolling="no"
             // marginheight={0}

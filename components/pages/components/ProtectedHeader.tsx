@@ -24,7 +24,7 @@ export function ProfileAvatar() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Avatar className="w-12 h-12">
+          <Avatar className="w-12 h-12 border">
             <AvatarImage src={profile?.avatar?.url} alt={profile?.name} />
             <AvatarFallback>
               {getAvatarFallbackName(profile?.name)}

@@ -1,6 +1,7 @@
 import NotFound from "@/components/NotFound";
 import DashboardContent from "../components/DashboardContent";
 import Leaderboard from "../leaderboard/Leaderboard";
+import ProblemExplore from "../programming/ProblemExplore";
 
 const allDashboardRoute = [
   {
@@ -10,6 +11,10 @@ const allDashboardRoute = [
   {
     name: "leaderboard",
     component: <Leaderboard />,
+  },
+  {
+    name: "explore",
+    component: <ProblemExplore />,
   },
 ];
 

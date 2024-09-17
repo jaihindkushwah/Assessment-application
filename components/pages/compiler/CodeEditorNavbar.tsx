@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 
 import {
@@ -11,10 +12,11 @@ import { Slider } from "./ui/slider";
 import { Button } from "@/components/ui/button";
 import { ResetIcon } from "@radix-ui/react-icons";
 import CustomTooltip from "./ui/tooltip";
+import { useCompiler } from "@/contexts/CompilerProvider";
 interface EditorNavProps {
   fontSize: number;
   setFontSize: any;
-  language?: string;
+  language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -24,6 +26,8 @@ export function CodeEditorNavbar({
   setLanguage,
   language,
 }: EditorNavProps) {
+  const { handleRunSubmit } = useCompiler();
+
   return (
     <nav className=" w-full pb-1 pr-6  mt-2 rounded-t-lg flex justify-between pl-2 border-2 border-slate-200 dark:border-0 items-center gap-2">
       <span className="flex gap-3 items-center  ">
@@ -54,6 +58,7 @@ export function CodeEditorNavbar({
       </span>
       <span className="flex gap-2">
         <Button
+          onClick={handleRunSubmit}
           variant={"default"}
           className="h-6 rounded-full text-[12px] font-medium active:scale-95 text-center active:duration-75 transition-all ease-in-out"
         >
