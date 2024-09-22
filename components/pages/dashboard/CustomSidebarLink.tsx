@@ -33,14 +33,21 @@ const links: SidebarLinkProps[] = [
     sub_links: [
       {
         label: "All DSA Challenges",
-        href: "?route=explore",
+        href: "/pages/protected/dashboard/explore",
         icon: (
           <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Live DSA Challenges",
-        href: "?route=livedsachallenges",
+        href: "/pages/protected/dashboard/live_challenges",
+        icon: (
+          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Create DSA Challenge",
+        href: "/pages/protected/create_dsa",
         icon: (
           <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),

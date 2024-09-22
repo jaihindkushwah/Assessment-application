@@ -1,7 +1,12 @@
 "use client";
 
 import React, { ButtonHTMLAttributes } from "react";
-import { useEditor, EditorContent, Editor } from "@tiptap/react";
+import {
+  useEditor,
+  EditorContent,
+  Editor,
+  UseEditorOptions,
+} from "@tiptap/react";
 import Paragraph from "@tiptap/extension-paragraph";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
@@ -171,11 +176,11 @@ export const RichTextEditorToolBar: React.FC<IRichTextEditorToolBarProps> = ({
         <SelectContent>
           <SelectGroup>
             {[
-              <Heading1 className="h-5 w-5" />,
-              <Heading2 className="h-5 w-5" />,
-              <Heading3 className="h-5 w-5" />,
-              <Heading4 className="h-5 w-5" />,
-              <Heading5 className="h-5 w-5" />,
+              <Heading1 key={"heading1"} className="h-5 w-5" />,
+              <Heading2 key={"heading2"} className="h-5 w-5" />,
+              <Heading3 key={"heading3"} className="h-5 w-5" />,
+              <Heading4 key={"heading4"} className="h-5 w-5" />,
+              <Heading5 key={"heading5"} className="h-5 w-5" />,
               // <Heading6 className="h-5 w-5" />,
             ].map((item, index) => (
               <SelectItem key={index} value={index + 1 + ""}>
@@ -276,23 +281,100 @@ export const RichTextReader: React.FC<IRichTextReader> = ({
   );
 };
 
-const RichTextEditor: React.FC = () => {
-  // const contents = JSON.parse(localStorage.getItem("content") || "{}") || "";
-  const editor = useEditor({
-    extensions: [...RichTextEditorExtensions],
-    // content: contents,
-    // editable: contents ? false : true,
-    // content: post.content,
-    // extensions: [...extensions],
-    // editable: false,
-    // immediatelyRender: false,
-    editorProps: { ...EditorDefaultProps },
-  });
+// interface IRichHooks {
 
+//   deps?: React.DependencyList
+// }
+
+export const useRichTextEditor = (
+  options?: UseEditorOptions,
+  deps?: React.DependencyList
+) => {
+  const editor: Editor | null = useEditor(
+    {
+      extensions: [...RichTextEditorExtensions],
+      // content: contents,
+      // editable: contents ? false : true,
+      // content: post.content,
+      // extensions: [...extensions],
+      // editable: false,
+      // immediatelyRender: false,
+      editorProps: { ...EditorDefaultProps },
+      ...options,
+    },
+    deps
+  );
+
+  return editor;
+};
+
+interface IRichTextEditor {
+  onChange?: (value: string) => void;
+  className?: string;
+  editor: Editor | null;
+  isToolbarVisible?: boolean;
+  toolbarClassName?: string;
+}
+
+export const RichTextEditor: React.FC<IRichTextEditor> = ({
+  editor,
+  isToolbarVisible = true,
+  toolbarClassName,
+  className,
+}) => {
   if (!editor) {
     return null;
   }
 
+  return (
+    <>
+      {isToolbarVisible ? (
+        <RichTextEditorToolBar
+          editor={editor}
+          containerClass={cn([toolbarClassName])}
+        />
+      ) : null}
+      <div className="flex z-0 mt-12">
+        <EditorContent
+          editor={editor}
+          style={{ minHeight: "240px" }}
+          className={cn([
+            "prose dark:prose-invert bg-[#f0f0f0]  dark:bg-[#0a0e0f] prose-pre:text-black dark:prose-pre:text-white prose-pre:font-medium prose-pre:bg-white dark:prose-pre:bg-black max-w-none  p-4 flex-1 border border-slate-200 dark:border-slate-700",
+            className,
+          ])}
+        />
+        {/* <div
+          className="prose dark:prose-invert bg-[#f0f0f0] dark:bg-[#0a0e0f] prose-pre:text-black dark:prose-pre:text-white prose-pre:font-medium prose-pre:bg-white dark:prose-pre:bg-black flex-1 p-5 max-w-[50vw] border-l border-slate-200 dark:border-slate-700"
+          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+        >
+          <pre>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
+        </div> */}
+      </div>
+    </>
+  );
+};
+
+const TextEditor = () => {
+  const contents = JSON.parse(localStorage.getItem("content") || "{}") || "";
+  // const editor = useEditor({
+  //   extensions: [...RichTextEditorExtensions],
+  //   // content: contents,
+  //   // editable: contents ? false : true,
+  //   // content: post.content,
+  //   // extensions: [...extensions],
+  //   // editable: false,
+  //   // immediatelyRender: false,
+  //   editorProps: { ...EditorDefaultProps },
+  // });
+  // const editor = useRichTextEditor();
+  const editor = useRichTextEditor({
+    content: contents,
+  });
+  console.log(JSON.stringify(contents));
+
+  if (!editor) {
+    return null;
+  }
   return (
     <div className="rounded-lg overflow-hidden relative bg-white dark:bg-black">
       <RichTextEditorToolBar editor={editor} />
@@ -304,9 +386,9 @@ const RichTextEditor: React.FC = () => {
         />
         <div
           className="prose dark:prose-invert bg-[#f0f0f0] dark:bg-[#0a0e0f] prose-pre:text-black dark:prose-pre:text-white prose-pre:font-medium prose-pre:bg-white dark:prose-pre:bg-black flex-1 p-5 max-w-[50vw] border-l border-slate-200 dark:border-slate-700"
-          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+          // dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
         >
-          {/* <pre>{JSON.stringify(editor.getJSON(), null, 2)}</pre> */}
+          <pre>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 flex justify-center w-full">
@@ -323,4 +405,4 @@ const RichTextEditor: React.FC = () => {
   );
 };
 
-export default RichTextEditor;
+export default TextEditor;

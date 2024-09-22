@@ -6,7 +6,7 @@ import TestOutput from "./TestOutput";
 import { useCompiler } from "@/contexts/CompilerProvider";
 
 function TestCaseTabs() {
-  const { currentTestCaseTab, setCurrentTestCaseTab } = useCompiler();
+  const { currentTestCaseTab, setCurrentTestCaseTab, output } = useCompiler();
   return (
     <Tabs
       value={currentTestCaseTab}
@@ -28,7 +28,7 @@ function TestCaseTabs() {
         className=" px-3 h-full w-full py-2 focus-visible:outline-none focus-visible:ring-0  focus-visible:ring-offset-0 mt-0 "
         value="output"
       >
-        <TestOutput />
+        <TestOutput output={output?.output} />
       </TabsContent>
     </Tabs>
   );

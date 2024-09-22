@@ -7,12 +7,13 @@ interface LoaderAnimationProps {
   type?: "book" | "loader";
 }
 function LoaderAnimation({ type }: LoaderAnimationProps) {
-  const animationData = useMemo(() => {
-    if (type === "loader") {
-      return loaderAnimation;
-    }
-    return bookAnimation;
-  }, [type]);
+  let animationData = type === "loader" ? loaderAnimation : bookAnimation;
+  // const animationData = useMemo(() => {
+  //   if (type === "loader") {
+  //     return loaderAnimation;
+  //   }
+  //   return bookAnimation;
+  // }, [type]);
   return (
     <div className="flex h-[90vh] justify-center items-center">
       <Lottie

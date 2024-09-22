@@ -1,5 +1,6 @@
 "use client";
 import { useCompilerAPI } from "@/hooks/useCompilerAPI";
+import { useParams } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 
 interface LanguageOptions {
@@ -76,14 +77,15 @@ const defaultCode: LanguageOptions = {
 };
 
 function CompilerProvider({ children }: CompilerProviderProps) {
-  const [problems, setProblems] = React.useState([]);
+  const [problems, setProblems] = React.useState("");
   const [language, setLanguage] = React.useState<LanguageKey>("java");
   const [inputTestCase, setInputTestCase] = React.useState("");
   const [code, setCode] = React.useState("");
-  const { handleRun } = useCompilerAPI();
+  const { handleRun, getProblemById } = useCompilerAPI();
   const [output, setOutput] = React.useState<ICompilerOutput>();
   const [currentTestCaseTab, setCurrentTestCaseTab] = React.useState("input");
-
+  const params = useParams();
+  const { id } = params as { id: string };
   const handleRunSubmit = useCallback(() => {
     handleRun({
       input: inputTestCase,
@@ -98,6 +100,18 @@ function CompilerProvider({ children }: CompilerProviderProps) {
       .catch((err) => {});
   }, [handleRun, inputTestCase, language, code]);
 
+  useEffect(() => {
+    console.log(id);
+    try {
+      if (!id) return;
+      getProblemById(id).then((res) => {
+        setProblems(res.content);
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [getProblemById, id]);
   useEffect(() => {
     setCode(defaultCode[language]);
   }, [language]);

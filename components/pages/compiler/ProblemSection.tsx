@@ -1,16 +1,24 @@
 "use client";
 import React from "react";
-// import "./css/styles.css";
 import { RichTextReader } from "@/components/TextEditor";
+import { useCompiler } from "@/contexts/CompilerProvider";
+// import { useParams, useSearchParams } from "next/navigation";
 function ProblemSection() {
-  const contents = localStorage.getItem("content") || "";
+  // const params = useParams();
+  // console.log(params);
+  let { problems: contents } = useCompiler();
+
+  if (!contents) {
+    contents = localStorage.getItem("content");
+  }
+
   return (
     <section
       // id="ProblemSection"
       className="max-h-[98vh] flex flex-col p-1 pt-8 pb-1 font-sans dark:text-white"
     >
       <div className="dark:bg-[#0a0e0f] h-full rounded-md overflow-y-auto bg-[#f0f0f0]  overflow-x-hidden ">
-        <RichTextReader contents={contents} />
+        {contents && <RichTextReader contents={contents} />}
       </div>
       {/* <h3>First Missing Positive</h3>
       

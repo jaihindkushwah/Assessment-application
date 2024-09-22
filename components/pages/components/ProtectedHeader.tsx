@@ -15,6 +15,7 @@ import {
 import { useSelector } from "react-redux";
 import { getAuthState } from "@/store/auth";
 import { getAvatarFallbackName } from "@/lib/getAvatarFallbackName";
+import { DarkModeToggle } from "@/components/ui/DarkModeToggleButton";
 
 export function ProfileAvatar() {
   const { profile } = useSelector(getAuthState);
@@ -71,7 +72,7 @@ function ProtectedHeader() {
       >
         Quiz
       </Link> */}
-
+      <DarkModeToggle />
       <ProfileAvatar />
     </header>
   );

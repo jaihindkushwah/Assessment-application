@@ -3,9 +3,9 @@ import CompilerProvider from "@/contexts/CompilerProvider";
 
 export function CompilerPage() {
   return (
-    <CompilerProvider>
-      <Compiler />
-    </CompilerProvider>
+    // <CompilerProvider>
+    <Compiler />
+    // </CompilerProvider>
   );
 }
 

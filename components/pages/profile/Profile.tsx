@@ -43,12 +43,12 @@ function Profile() {
       <Button
         onClick={backHandler}
         variant="ghost"
-        className="absolute top-4 left-4 p-2 hover:bg-accent"
+        className="sticky top-4 left-4 p-2 hover:bg-accent"
       >
         <ArrowLeft className="w-5 h-5" />
       </Button>
 
-      <div className="flex flex-col items-center space-y-8 pt-16 pb-8">
+      <div className="flex flex-col items-center space-y-8 pt-12 pb-8">
         <ProfileViewer userData={profile} />
         <RecentPurchase />
         <ResetPassword />
@@ -84,7 +84,7 @@ const ProfileViewer = ({ userData }: { userData: any }) => {
         <div className="relative group">
           <Avatar className="w-32 h-32 cursor-pointer group-hover:opacity-75 transition-opacity">
             <AvatarImage src={avatarUrl} alt={userData.name} />
-            <AvatarFallback>
+            <AvatarFallback className="text-xl sm:text-2xl sm:tracking-widest">
               {getAvatarFallbackName(userData.name)}
             </AvatarFallback>
           </Avatar>

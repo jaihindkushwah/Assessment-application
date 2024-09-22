@@ -23,8 +23,17 @@ export function useCompilerAPI() {
     const response = await axios.post(url, inputs, config);
     return response.data;
   };
+  const getProblemById = async (id: string) => {
+    const response = await axios.get(
+      `http://127.0.0.1:8080/api/v1/dsa/get/${id}`
+    );
+    const data = await response.data;
+    // console.log(data.problem.content);
+    return data.problem;
+  };
 
   return {
     handleRun,
+    getProblemById,
   };
 }

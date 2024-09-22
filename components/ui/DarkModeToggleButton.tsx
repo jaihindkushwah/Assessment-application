@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { Button } from "./button";
+import { Button, buttonVariants } from "./button";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -29,23 +29,45 @@ const darkModeToggleVariants = cva("", {
 });
 interface DarkModeToggleProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof darkModeToggleVariants> {}
+    VariantProps<typeof darkModeToggleVariants> {
+  buttonClassName?: string;
+  iconClassName?: string;
+}
 
 // className={
 //   isFixedBottom
 //     ? "fixed bottom-1 right-1 "
 //     : "fixed bottom-1 right-1 md:hidden"
 // }
-export function DarkModeToggle({ fixed, className }: DarkModeToggleProps) {
+export function DarkModeToggle({
+  fixed,
+  className,
+  buttonClassName,
+  iconClassName,
+}: DarkModeToggleProps) {
   const { setTheme } = useTheme();
 
   return (
     <div className={cn(darkModeToggleVariants({ fixed, className }))}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="secondary" className=" rounded-full" size="icon">
-            <SunIcon className="h-[1.2rem] w-[1.2rem] rounded-full rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Button
+            variant="secondary"
+            size="icon"
+            className={cn(["rounded-full", buttonClassName])}
+          >
+            <SunIcon
+              className={cn([
+                "h-[1.2rem] w-[1.2rem] rounded-full rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
+                iconClassName,
+              ])}
+            />
+            <MoonIcon
+              className={cn([
+                "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
+                iconClassName,
+              ])}
+            />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
