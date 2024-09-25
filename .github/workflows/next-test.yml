@@ -29,9 +29,3 @@ jobs:
 
       - name: Build app
         run: npm run build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: next-build
-          path: .next
