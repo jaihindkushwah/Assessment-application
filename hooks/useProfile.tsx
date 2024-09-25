@@ -1,4 +1,3 @@
-// import { updateLoggedInState, updateProfile, updateToken } from "@/store/auth";
 import axios from "axios";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -17,9 +16,6 @@ function useProfile() {
           "http://127.0.0.1:8080/api/v1/profile",
           config
         );
-        // dispatch(updateProfile(response.data));
-        // dispatch(updateLoggedInState(true));
-        // dispatch(updateToken(token));
         return response.data;
       } catch (error) {
         localStorage.removeItem("token");
