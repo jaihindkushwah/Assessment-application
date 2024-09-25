@@ -8,9 +8,10 @@ function ProblemSection() {
   // console.log(params);
   let { problems: contents } = useCompiler();
 
-  if (!contents) {
-    contents = localStorage.getItem("content");
-  }
+  // if (!contents) {
+  //   contents = localStorage.getItem("content");
+  // }
+  console.log(contents);
 
   return (
     <section

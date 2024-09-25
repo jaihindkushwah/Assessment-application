@@ -86,7 +86,7 @@ function ContactForm() {
   }
   return (
     <main className="flex w-full flex-col items-center justify-start sm:justify-center">
-      <div className=" flex items-center mt-5 flex-col md:w-[640px] w-full">
+      <div className=" flex items-center mt-5 flex-col sm:w-[360px] md:w-[540px] w-full">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

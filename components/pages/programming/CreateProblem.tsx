@@ -1,41 +1,29 @@
 "use client";
 import {
-  RichTextEditor,
+  TextEditorDrawerDialog,
   RichTextReader,
   useRichTextEditor,
 } from "@/components/TextEditor";
-import { Button } from "@/components/ui/button";
 import React from "react";
-
 function CreateProblem() {
-  const [contents, setContents] = React.useState<string>("");
-  const editor = useRichTextEditor();
-  const [isViewing, setIsViewing] = React.useState(false);
-
+  const [contents, setContents] = React.useState<string>(
+    localStorage.getItem("create_content") || "{}"
+  );
+  const editor = useRichTextEditor({ content: JSON.parse(contents) });
+  console.log(contents);
   const onClick = () => {
-    setContents(JSON.stringify(editor?.getJSON() || ""));
-    console.log(contents);
+    const content = JSON.stringify(editor?.getJSON() || "");
+    localStorage.setItem("create_content", content);
+    setContents(content);
+    // console.log(contents);
   };
-
-  // if(!editor) return null;
   return (
-    <div>
-      <div>
-        <div className="w-1/2">
-          <RichTextEditor editor={editor} />
-        </div>
-        <div className="w-1/2">
-          {isViewing ? <RichTextReader contents={contents} /> : null}
-        </div>
+    <div className="flex">
+      <div className="flex-1">
+        <TextEditorDrawerDialog editor={editor} onClick={onClick} />
+        <RichTextReader contents={contents} />
       </div>
-      <Button onClick={onClick}>Preview</Button>
-      <Button
-        onClick={() => {
-          setIsViewing(!isViewing);
-        }}
-      >
-        {isViewing ? "View" : "Edit"}
-      </Button>
+      <div className="flex-1"></div>
     </div>
   );
 }

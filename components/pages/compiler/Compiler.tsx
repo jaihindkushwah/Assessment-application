@@ -14,7 +14,7 @@ export function Compiler() {
   const isRunning = false;
 
   return (
-    <div className="dark:bg-black bg-[#f0f0f0] pt-3">
+    <div className="dark:bg-black bg-[#f0f0f0] scrollbar-hide">
       <DarkModeToggle fixed={"bottom-right"} />
       <ResizablePanelGroup
         direction="horizontal"

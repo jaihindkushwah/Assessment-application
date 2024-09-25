@@ -15,7 +15,7 @@ export const HamburgerMenuPage = () => {
             alt="logo"
             width={1920}
             height={1080}
-            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
+            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2 z-40"
           />
           <SheetTrigger>
             <span className="text-center text-4xl ">&#8801;</span>

@@ -23,6 +23,8 @@ const PaginationComponent = ({
   onChange,
 }: PaginationProps) => {
   // const totalPages = 20;
+
+  // console.log("currentPage range", range);
   const [currentPage, setCurrentPage] = useState(defaultPage);
   const [visibleRange, setVisibleRange] = useState({ start: 1, end: range });
 
@@ -74,8 +76,8 @@ const PaginationComponent = ({
     }
   };
   useEffect(() => {
-    handlePageChange(defaultPage);
-  }, []);
+    setCurrentPage(defaultPage);
+  }, [defaultPage]);
 
   return (
     <Pagination>

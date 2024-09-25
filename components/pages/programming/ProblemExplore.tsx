@@ -4,6 +4,8 @@ import { ProblemCard } from "@/components/ProblemCard";
 import { getProblems } from "@/hooks/dsaProblem";
 import ProblemFilter from "./ProblemFilter";
 import Pagination from "./Pagination";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 
 interface ProblemExploreProps {
   searchParams: {
@@ -17,7 +19,17 @@ interface ProblemExploreProps {
 export default async function ProblemExplore({
   searchParams,
 }: ProblemExploreProps) {
-  const ProblemsData = await getProblems(searchParams);
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return;
+  }
+  const token = session.user?.token as string;
+  const {
+    problems: ProblemsData,
+    currentPage,
+    totalPages,
+    totalProblems,
+  } = await getProblems(token, searchParams);
 
   return (
     <>
@@ -27,12 +39,17 @@ export default async function ProblemExplore({
             <p className="text-xl font-bold">Explore Problems</p>
           </div>
           <div className="w-full  flex flex-col gap-2 ">
-            {ProblemsData?.map((problem: any) => (
+            {ProblemsData?.map((problem) => (
               <ProblemCard key={problem._id} {...problem} id={problem._id} />
             ))}
           </div>
+          {!totalProblems || totalProblems === 0 ? (
+            <div className="flex flex-col justify-center items-center h-[150px] text-red-700">
+              <p className="text-base font-semibold">No Problems Found</p>
+            </div>
+          ) : null}
           <div className="relative py-3 ">
-            <Pagination />
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
           </div>
         </div>
         <ProblemFilter />

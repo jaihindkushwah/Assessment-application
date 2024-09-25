@@ -1,22 +1,40 @@
-import { getAuthState } from "@/store/auth";
+// import { getAuthState } from "@/store/auth";
 import axios from "axios";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+// import { useSelector } from "react-redux";
 
 export interface ICompilerRun {
   input: string;
   language: string;
   code: string;
+  problemId: string;
 }
 
 export function useCompilerAPI() {
-  const { token } = useSelector(getAuthState);
+  const { data: session } = useSession();
+
   const handleRun = async ({ ...inputs }: ICompilerRun) => {
     const url = "http://localhost:8080/api/v1/compiler/test";
     // try {
+    if (!session?.user.token) throw new Error("Not logged in");
+    console.log(session?.user.token);
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${session?.user.token}`,
+      },
+    };
+    console.log(inputs);
+    const response = await axios.post(url, inputs, config);
+    return response.data;
+  };
+  const handleSubmit = async ({ ...inputs }: ICompilerRun) => {
+    const url = "http://localhost:8080/api/v1/compiler/test";
+    // try {
+    if (!session?.user.token) throw new Error("Not logged in");
+    console.log(session?.user.token);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${session?.user.token}`,
       },
     };
     console.log(inputs);
@@ -35,5 +53,6 @@ export function useCompilerAPI() {
   return {
     handleRun,
     getProblemById,
+    handleSubmit,
   };
 }

@@ -5,8 +5,8 @@ export interface UserProfile {
   // profile which is send while login
   name: string;
   email: string;
-  role: "admin" | "user";
-  avatar:
+  role: "admin" | "user" | string;
+  avatar?:
     | {
         url: string;
         publicId: string;

@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import React, { ButtonHTMLAttributes } from "react";
 import {
   useEditor,
@@ -41,6 +49,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 // const fontSizes = {
 //   Small: "14px",
@@ -125,7 +134,7 @@ export const RichTextEditorToolBar: React.FC<IRichTextEditorToolBarProps> = ({
   return (
     <div
       className={cn([
-        "flex flex-wrap fixed z-40 top-0 w-screen gap-1 p-2 border-b border-slate-200 bg-white  dark:bg-black dark:border-slate-700",
+        "flex flex-wrap absolute z-40 mb-5 top-0 w-full gap-1 p-2 border-b border-slate-200 bg-white  dark:bg-black dark:border-slate-700",
         containerClass,
       ])}
     >
@@ -258,13 +267,16 @@ export const RichTextReader: React.FC<IRichTextReader> = ({
   contents,
   className,
 }) => {
-  const editor = useEditor({
-    extensions: [...RichTextEditorExtensions],
-    content: JSON.parse(contents || "{}") || "",
-    editable: false,
-    immediatelyRender: false,
-    editorProps: { ...EditorDefaultProps },
-  });
+  const editor = useEditor(
+    {
+      extensions: [...RichTextEditorExtensions],
+      content: JSON.parse(contents || "{}") || "",
+      editable: false,
+      immediatelyRender: false,
+      editorProps: { ...EditorDefaultProps },
+    },
+    [contents]
+  );
 
   if (!editor) {
     return null;
@@ -367,6 +379,9 @@ const TextEditor = () => {
   //   editorProps: { ...EditorDefaultProps },
   // });
   // const editor = useRichTextEditor();
+  const onClick = () => {
+    localStorage.setItem("content", JSON.stringify(editor?.getJSON() || ""));
+  };
   const editor = useRichTextEditor({
     content: contents,
   });
@@ -376,33 +391,80 @@ const TextEditor = () => {
     return null;
   }
   return (
-    <div className="rounded-lg overflow-hidden relative bg-white dark:bg-black">
-      <RichTextEditorToolBar editor={editor} />
-      <div className="flex z-0 mt-12">
-        <EditorContent
-          editor={editor}
-          style={{ minHeight: "240px" }}
-          className="prose dark:prose-invert bg-[#f0f0f0]  dark:bg-[#0a0e0f] prose-pre:text-black dark:prose-pre:text-white prose-pre:font-medium prose-pre:bg-white dark:prose-pre:bg-black max-w-none  p-4 flex-1 border border-slate-200 dark:border-slate-700"
-        />
-        <div
-          className="prose dark:prose-invert bg-[#f0f0f0] dark:bg-[#0a0e0f] prose-pre:text-black dark:prose-pre:text-white prose-pre:font-medium prose-pre:bg-white dark:prose-pre:bg-black flex-1 p-5 max-w-[50vw] border-l border-slate-200 dark:border-slate-700"
-          // dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
-        >
-          <pre>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
-        </div>
+    <div className="rounded-lg overflow-hidden w-[99vw] flex  bg-white dark:bg-black">
+      <div className="flex-1">
+        <TextEditorDrawerDialog editor={editor} onClick={onClick} />
+        <RichTextReader contents={JSON.stringify(editor.getJSON())} />
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center w-full">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() =>
-            localStorage.setItem("content", JSON.stringify(editor.getJSON()))
-          }
-        >
-          Save
-        </button>
+      <div className="flex-1 overflow-scroll">
+        <pre>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
       </div>
     </div>
   );
 };
 
 export default TextEditor;
+
+interface IDialogProps {
+  editor: any;
+  onClick: () => void;
+}
+
+export function TextEditorDrawerDialog({ editor, onClick }: IDialogProps) {
+  const [open, setOpen] = React.useState(false);
+  //   const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  //   if (isDesktop) {
+
+  return (
+    <Dialog modal={false} open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Edit Content</Button>
+      </DialogTrigger>
+      <DialogContent className="md:max-w-[840px] max-h-screen">
+        <DialogHeader>
+          <DialogTitle className="flex justify-between items-center pr-5">
+            Edit Problem Content{" "}
+            <Button variant="outline" onClick={onClick}>
+              Save Changes
+            </Button>
+          </DialogTitle>
+          <DialogDescription>
+            Make changes to your Content here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="relative">
+          <RichTextEditor
+            className="overflow-scroll max-h-[75vh]"
+            editor={editor}
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+    // );
+    //   }
+
+    //   return (
+    //     <Drawer open={open} onOpenChange={setOpen}>
+    //       <DrawerTrigger asChild>
+    //         <Button variant="outline">Edit Content</Button>
+    //       </DrawerTrigger>
+    //       <DrawerContent>
+    //         <DrawerHeader className="text-left">
+    //           <DrawerTitle>Edit Problem Content</DrawerTitle>
+    //           <DrawerDescription>
+    //             Make changes to your Content here. Click save when you're done.
+    //           </DrawerDescription>
+    //         </DrawerHeader>
+    //         <div className="relative">
+    //           <RichTextEditor editor={editor} />
+    //         </div>
+    //         <DrawerFooter className="pt-2">
+    //           <DrawerClose asChild>
+    //             <Button variant="outline">Cancel</Button>
+    //           </DrawerClose>
+    //         </DrawerFooter>
+    //       </DrawerContent>
+    //     </Drawer>
+  );
+}

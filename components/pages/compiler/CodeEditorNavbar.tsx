@@ -26,7 +26,7 @@ export function CodeEditorNavbar({
   setLanguage,
   language,
 }: EditorNavProps) {
-  const { handleRunSubmit } = useCompiler();
+  const { handleRunSubmit, handleFinalSubmit } = useCompiler();
 
   return (
     <nav className=" w-full pb-1 pr-6  mt-2 rounded-t-lg flex justify-between pl-2 border-2 border-slate-200 dark:border-0 items-center gap-2">
@@ -65,6 +65,7 @@ export function CodeEditorNavbar({
           Run
         </Button>
         <Button
+          onClick={handleFinalSubmit}
           variant={"default"}
           className="h-6 rounded-full text-[12px] font-medium active:scale-95 text-center active:duration-75 transition-all ease-in-out"
         >

@@ -1,4 +1,5 @@
 "use client";
+import LoaderAnimation from "@/components/LoaderAnimation";
 import { useCompilerAPI } from "@/hooks/useCompilerAPI";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
@@ -23,6 +24,7 @@ interface ICompilerOutput {
 
 interface ICompilerContext {
   handleRunSubmit: () => void;
+  handleFinalSubmit: () => void;
   setProblems: (value: any) => void;
   setLanguage: (value: any) => void;
   setInputTestCase: (value: any) => void;
@@ -39,6 +41,7 @@ interface ICompilerContext {
 
 const CompilerContext = React.createContext<ICompilerContext>({
   handleRunSubmit: () => {},
+  handleFinalSubmit: () => {},
   setProblems: (value: any) => {},
   setLanguage: (value: any) => {},
   setInputTestCase: (value: any) => {},
@@ -81,29 +84,58 @@ function CompilerProvider({ children }: CompilerProviderProps) {
   const [language, setLanguage] = React.useState<LanguageKey>("java");
   const [inputTestCase, setInputTestCase] = React.useState("");
   const [code, setCode] = React.useState("");
-  const { handleRun, getProblemById } = useCompilerAPI();
+  const { handleRun, getProblemById, handleSubmit } = useCompilerAPI();
   const [output, setOutput] = React.useState<ICompilerOutput>();
   const [currentTestCaseTab, setCurrentTestCaseTab] = React.useState("input");
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const params = useParams();
   const { id } = params as { id: string };
-  const handleRunSubmit = useCallback(() => {
+  const handleFinalSubmit = useCallback(() => {
+    setIsLoading(true);
     handleRun({
       input: inputTestCase,
       language: language,
       code: code,
+      problemId: id,
     })
       .then((res) => {
         console.log(res);
         setOutput(res);
         setCurrentTestCaseTab("output");
       })
-      .catch((err) => {});
-  }, [handleRun, inputTestCase, language, code]);
+      .catch((err) => {})
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [handleRun, inputTestCase, language, code, id]);
+
+  const handleRunSubmit = useCallback(() => {
+    setIsLoading(true);
+    handleRun({
+      input: inputTestCase,
+      language: language,
+      code: code,
+      problemId: id,
+    })
+      .then((res) => {
+        console.log(res);
+        setOutput(res);
+        setCurrentTestCaseTab("output");
+      })
+      .catch((err) => {})
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [handleRun, inputTestCase, language, code, id]);
 
   useEffect(() => {
     console.log(id);
     try {
-      if (!id) return;
+      if (!id) {
+        setProblems(localStorage.getItem("content") || "");
+        return;
+      }
       getProblemById(id).then((res) => {
         setProblems(res.content);
         console.log(res);
@@ -132,8 +164,24 @@ function CompilerProvider({ children }: CompilerProviderProps) {
         code,
         setCurrentTestCaseTab,
         currentTestCaseTab,
+        handleFinalSubmit,
       }}
     >
+      {isLoading ? (
+        <LoaderAnimation
+          className="fixed top-0 left-0 w-full h-full z-40 dark:bg-[#acabab]"
+          style={{ backgroundColor: "#acabab", opacity: 0.3 }}
+          type="roundLoading"
+          animationStyle={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "120px",
+            height: "120px",
+          }}
+        />
+      ) : null}
       {children}
     </CompilerContext.Provider>
   );

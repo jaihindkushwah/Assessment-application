@@ -13,10 +13,10 @@ const allDashboardRoute = [
     name: "leaderboard",
     component: <Leaderboard />,
   },
-  {
-    name: "explore",
-    component: <ProblemExplore />,
-  },
+  // {
+  //   name: "explore",
+  //   component: <ProblemExplore />,
+  // },
   {
     name: "livedsachallenges",
     component: <LiveProblems />,

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,7 +16,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { getAuthState } from "@/store/auth";
+// import { getAuthState } from "@/store/auth";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { getAvatarFallbackName } from "@/lib/getAvatarFallbackName";
@@ -28,10 +28,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
 // import ProfileViewer from '@/components/ProfileViewer';
 
 function Profile() {
-  const { profile } = useSelector(getAuthState);
+  // const { profile } = useSelector(getAuthState);
+  const { data: session } = useSession();
   const router = useRouter();
 
   const backHandler = () => {
@@ -49,7 +51,7 @@ function Profile() {
       </Button>
 
       <div className="flex flex-col items-center space-y-8 pt-12 pb-8">
-        <ProfileViewer userData={profile} />
+        <ProfileViewer userData={session?.user} />
         <RecentPurchase />
         <ResetPassword />
         <HelpComponent />
@@ -61,7 +63,7 @@ function Profile() {
 export default Profile;
 
 const ProfileViewer = ({ userData }: { userData: any }) => {
-  const [avatarUrl, setAvatarUrl] = useState(userData.avatar?.url);
+  const [avatarUrl, setAvatarUrl] = useState(userData?.avatar);
 
   const handleAvatarUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();

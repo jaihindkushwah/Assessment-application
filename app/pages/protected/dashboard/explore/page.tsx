@@ -2,7 +2,10 @@ import ProblemExplore from "@/components/pages/programming/ProblemExplore";
 import React from "react";
 interface Props {
   searchParams: {
-    data: string;
+    page?: string;
+    status?: string;
+    difficulty?: string;
+    tags?: string;
   };
 }
 function Page(props: Props) {

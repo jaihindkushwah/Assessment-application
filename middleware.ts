@@ -1,29 +1,47 @@
-// pages/_middleware.js
+import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  // console.log(request.nextUrl.pathname);
-  // handle refresh page
-  // const token = request.cookies.get("token");
-  // if (request.nextUrl.pathname.startsWith("/auth/login")) {
-  //   if (token) {
-  //     return NextResponse.redirect(new URL("/pages/protected/dashboard", request.url));
-  //   }
-  // }
-  // if (!token) {
-  //   return NextResponse.redirect(new URL("/auth/login", request.url));
-  // }
-  // if (request.nextUrl.pathname.startsWith("/pages/protected")) {
-  // }
-  // return NextResponse.redirect(new URL("/auth/login", request.url));
-}
+export default withAuth(
+  function middleware(req) {
+    const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
+    const isProtectedPage = req.nextUrl.pathname.startsWith("/pages/protected");
 
-// See "Matching Paths" below to learn more
+    console.log("Middleware accessed path:", req.nextUrl.pathname);
+
+    // Redirect authenticated users away from auth pages
+
+    if (isProtectedPage && !req.nextauth.token) {
+      return NextResponse.redirect(new URL("/auth/login", req.url));
+    }
+    if (isAuthPage && req.nextauth.token) {
+      return NextResponse.redirect(
+        new URL("/pages/protected/dashboard", req.url)
+      );
+    }
+
+    // For all other cases, continue to the next middleware or to the page
+    return NextResponse.next();
+  },
+  {
+    callbacks: {
+      authorized: ({ token, req }) => {
+        const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
+        const isProtectedPage =
+          req.nextUrl.pathname.startsWith("/pages/protected");
+
+        // Allow access to auth pages if not authenticated
+        if (isAuthPage) return true;
+
+        // Require authentication for protected pages
+        if (isProtectedPage) return !!token;
+
+        // Allow access to public pages
+        return true;
+      },
+    },
+  }
+);
+
 export const config = {
-  matcher: [
-    "/:path*",
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
+  matcher: ["/auth/:path*", "/pages/protected/:path*"],
 };

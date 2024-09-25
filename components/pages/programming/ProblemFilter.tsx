@@ -17,55 +17,10 @@ const FilerCheckbox: React.FC<IFilterCheckboxProps> = ({ title, ...props }) => {
   );
 };
 
-// const convertObjectToString = (obj = {}) => {
-//   return Object.entries(obj)
-//     .map((item) => {
-//       if (item[1]) {
-//         return item[0];
-//       }
-//     })
-//     .filter((item) => item)
-//     .join(",");
-// };
-
 function ProblemFilter() {
-  //   const [status, setStatus] = useState({
-  //     solved: false,
-  //     unsolved: false,
-  //   });
-  //   const [difficulty, setDifficulty] = useState({
-  //     easy: false,
-  //     medium: false,
-  //     hard: false,
-  //   });
   const router = useRouter();
   const path = usePathname();
   const searchParams = useSearchParams();
-
-  //   const handleFilterRoute = useCallback(() => {
-  //     const updatedSearchParams = new URLSearchParams(searchParams.toString());
-
-  //     const newDifficulty = convertObjectToString(difficulty);
-  //     const newStatus = convertObjectToString(status);
-  //     if (newStatus) {
-  //       updatedSearchParams.set("status", newStatus);
-  //     } else {
-  //       updatedSearchParams.delete("status");
-  //     }
-  //     if (newDifficulty) {
-  //       updatedSearchParams.set("difficulty", newDifficulty);
-  //     } else {
-  //       updatedSearchParams.delete("difficulty");
-  //     }
-  //     // console.log(updatedSearchParams.get("status"));
-  //     let newFilter = path + "?" + updatedSearchParams.toString();
-  //     // console.log(newFilter);
-  //     router.push(newFilter);
-  //   }, [difficulty, path, router, status]);
-
-  //   const handleSetDifficulty = (key: string, value: boolean | string) => {
-  //     setDifficulty({ ...difficulty, [key]: value });
-  //   };
   const handleFilter = useCallback(
     (key: string, value: string, checked: boolean | string) => {
       // setStatus({ ...status, [key]: value });
@@ -87,7 +42,7 @@ function ProblemFilter() {
       router.push(newFilter);
       //   console.log(newStatus);
     },
-    [searchParams]
+    [path, router, searchParams]
   );
   const handleCheckboxCheck = useCallback(
     (key: string, value: string) => {
@@ -102,29 +57,8 @@ function ProblemFilter() {
     [searchParams]
   );
 
-  //   useEffect(() => {
-  //     console.log("dev");
-  //     handleFilterRoute();
-  //   }, [handleFilterRoute]);
-
   return (
     <div className=" ml-3 relative max-w-[330px] w-full  sm:block hidden">
-      {/* <button
-        onClick={() => {
-          handleFilterRoute("status", "solved");
-        }}
-        className="px-5 bg-gray-700 border-red-300 border "
-      >
-        Set
-      </button>
-      <button
-        onClick={() => {
-          handleFilterRoute("status", "unsolved");
-        }}
-        className="px-5 bg-gray-700 border-red-300 border "
-      >
-        unSet
-      </button> */}
       <div className="pb-2 flex flex-col p-5  gap-3 items-center sticky top-0 right-0">
         <Card className="w-fit mt-3 pt-5 ">
           {/* <CardHeader></CardHeader> */}
@@ -150,22 +84,22 @@ function ProblemFilter() {
               <p className="font-bold text-lg ">Difficulty</p>
               <FilerCheckbox
                 onCheckedChange={(e) => {
-                  handleFilter("difficulty", "easy", e);
+                  handleFilter("difficulty", "Easy", e);
                 }}
-                checked={handleCheckboxCheck("difficulty", "easy")}
+                checked={handleCheckboxCheck("difficulty", "Easy")}
                 title="Easy"
               />
               <FilerCheckbox
                 onCheckedChange={(e) => {
-                  handleFilter("difficulty", "medium", e);
+                  handleFilter("difficulty", "Medium", e);
                 }}
-                checked={handleCheckboxCheck("difficulty", "medium")}
+                checked={handleCheckboxCheck("difficulty", "Medium")}
                 title="Medium"
               />
               <FilerCheckbox
-                checked={handleCheckboxCheck("difficulty", "hard")}
+                checked={handleCheckboxCheck("difficulty", "Hard")}
                 onCheckedChange={(e) => {
-                  handleFilter("difficulty", "hard", e);
+                  handleFilter("difficulty", "Hard", e);
                 }}
                 title="Hard"
               />
@@ -173,20 +107,104 @@ function ProblemFilter() {
             <div className="flex flex-col gap-2 mt-4">
               <p className="font-bold text-lg">Tags</p>
               <div className="grid md:grid-cols-1 lg:grid-cols-2  grid-cols-2  gap-2 ">
-                <FilerCheckbox title="Array" />
-                <FilerCheckbox title="Linked List" />
-                <FilerCheckbox title="Tree" />
-                <FilerCheckbox title="Graph" />
-                <FilerCheckbox title="Math" />
-                <FilerCheckbox title="Bitmask" />
-                <FilerCheckbox title="String" />
-                <FilerCheckbox title="Backtracking" />
-                <FilerCheckbox title="Greedy" />
-                <FilerCheckbox title="Heap" />
-                <FilerCheckbox title="Sorting" />
-                <FilerCheckbox title="Stack" />
-                <FilerCheckbox title="Search" />
-                <FilerCheckbox title="Binary Search" />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Array")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Array", e);
+                  }}
+                  title="Array"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "LinkedList")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "LinkedList", e);
+                  }}
+                  title="Linked List"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Tree")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Tree", e);
+                  }}
+                  title="Tree"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Graph")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Graph", e);
+                  }}
+                  title="Graph"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Math")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Math", e);
+                  }}
+                  title="Math"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Bitmask")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Bitmask", e);
+                  }}
+                  title="Bitmask"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "String")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "String", e);
+                  }}
+                  title="String"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Backtracking")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Backtracking", e);
+                  }}
+                  title="Backtracking"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Greedy")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Greedy", e);
+                  }}
+                  title="Greedy"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Heap")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Heap", e);
+                  }}
+                  title="Heap"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Sorting")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Sorting", e);
+                  }}
+                  title="Sorting"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Stack")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Stack", e);
+                  }}
+                  title="Stack"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "Searching")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "Searching", e);
+                  }}
+                  title="Searching"
+                />
+                <FilerCheckbox
+                  checked={handleCheckboxCheck("tags", "BinarySearch")}
+                  onCheckedChange={(e) => {
+                    handleFilter("tags", "BinarySearch", e);
+                  }}
+                  title="Binary Search"
+                />
               </div>
             </div>
           </CardContent>

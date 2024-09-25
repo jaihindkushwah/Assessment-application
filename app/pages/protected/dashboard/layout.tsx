@@ -1,6 +1,6 @@
 // import ProtectedHeader from "@/components/pages/protected/ProtectedHeader";
 import ProtectedHeader from "@/components/pages/components/ProtectedHeader";
-import { DashboardSidebar } from "@/components/pages/dashboard/Sidebar";
+import { DashboardSidebar } from "@/components/pages/components/Sidebar";
 import React from "react";
 
 interface Props {

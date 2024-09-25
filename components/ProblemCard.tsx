@@ -28,6 +28,7 @@ export interface IProblemCardProps
   attempt?: string;
   href?: string;
   btnTitle?: string;
+  status?: string;
 }
 
 export const ProblemCard: React.FC<IProblemCardProps> = ({
@@ -38,7 +39,8 @@ export const ProblemCard: React.FC<IProblemCardProps> = ({
   attempt = "1.5k",
   className,
   href,
-  btnTitle = "Solve",
+  status,
+  // btnTitle = "Solve",
 }) => {
   const link = !href ? "/pages/protected/compiler/" + id : href;
   return (
@@ -56,11 +58,11 @@ export const ProblemCard: React.FC<IProblemCardProps> = ({
       <span className="flex justify-center flex-col items-end text-sm gap-2">
         <span className="flex gap-3 flex-col items-center">
           <button
-            title="Solve"
+            title={status === "solved" ? "Solved" : "Solve"}
             // href={link}
             className="dark:bg-[#071426] hover:dark:bg-[#01060c] hover:bg-slate-300 bg-slate-200 px-4 py-1 font-medium rounded-md text-sm"
           >
-            {btnTitle}
+            {status === "solved" ? "Solved" : "Solve"}
           </button>
           <p className="">{attempt}</p>
         </span>

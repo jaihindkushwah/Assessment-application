@@ -43,7 +43,7 @@ function useRegister() {
       );
       const data = await response.data;
       console.log("data", await data);
-      dispatch(updateLoggedInState(true));
+      // dispatch(updateLoggedInState(true));
     } catch (error: any) {
       const errorMsg = error.response.data.message;
       if (errorMsg) {

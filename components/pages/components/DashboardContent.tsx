@@ -54,7 +54,7 @@ const ItemCard = ({ description, title, sub_link }: ItemCardProps) => {
   });
 
   return (
-    <Card className="overflow-x-hidden w-full sm:w-[360px]">
+    <Card className="overflow-x-hidden w-full sm:w-[360px] dark:bg-[#011531] border border-neutral-200 bg-blend-darken dark:border-slate-700">
       <div
         ref={ref as any}
         tabIndex={0} // Make the card focusable
@@ -63,7 +63,7 @@ const ItemCard = ({ description, title, sub_link }: ItemCardProps) => {
         }`}
       >
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="text-lg font-medium">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           {sub_link ? (
@@ -89,7 +89,9 @@ function DashboardContent() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-bold"> Current Events</h2>
+        <span>
+          <h2 className="text-xl font-medium"> Current Events</h2>
+        </span>
         <div className="flex flex-wrap gap-3">
           {DashboardCardData.map((_, index) => (
             <ItemCard {..._} key={index} />
@@ -100,7 +102,7 @@ function DashboardContent() {
         <hr className="my-3 h-2" />
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-bold"> Upcoming Events</h2>
+        <h2 className="text-xl font-medium"> Upcoming Events</h2>
         <div className="flex flex-wrap gap-3">
           {DashboardCardData.map((_, index) => (
             <ItemCard {..._} key={index + "33"} />
@@ -111,7 +113,7 @@ function DashboardContent() {
         <hr className="my-3 h-2" />
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-bold"> Recent Purchase</h2>
+        <h2 className="text-xl font-medium"> Recent Purchase</h2>
         <div className="flex flex-wrap gap-3">
           {DashboardCardData.map((_, index) => (
             <ItemCard {..._} key={index + "330"} />
