@@ -430,7 +430,7 @@ export function TextEditorDrawerDialog({ editor, onClick }: IDialogProps) {
             </Button>
           </DialogTitle>
           <DialogDescription>
-            Make changes to your Content here. Click save when you're done.
+            Make changes to your Content here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="relative">
