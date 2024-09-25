@@ -1,13 +1,13 @@
 import { SidebarLink } from "@/components/ui/sidebar";
-import {
-  IconArrowLeft,
-  IconBrandTabler,
-  IconDeviceImacCode,
-  IconHourglass,
-  IconSettings,
-  IconTrophy,
-  IconUserBolt,
-} from "@tabler/icons-react";
+// import {
+//   IconArrowLeft,
+//   IconBrandTabler,
+//   IconDeviceImacCode,
+//   IconHourglass,
+//   IconSettings,
+//   IconTrophy,
+//   IconUserBolt,
+// } from "@tabler/icons-react";
 import React from "react";
 import {
   Accordion,
@@ -16,40 +16,63 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import {
+  Layout,
+  Code2,
+  Laptop,
+  Rocket,
+  PlayCircle,
+  Cpu,
+  PenTool,
+  BookOpen,
+  GraduationCap,
+  Trophy,
+  UserCircle,
+  Settings,
+  LogOut,
+} from "lucide-react";
+
 const links: SidebarLinkProps[] = [
   {
     label: "Dashboard",
-    href: "?route=dashboard",
+    href: "/pages/protected/dashboard",
     icon: (
-      <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <Layout className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
   },
   {
     label: "Programming Arena",
     href: "#",
     icon: (
-      <IconDeviceImacCode className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <Code2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
     sub_links: [
       {
         label: "All DSA Challenges",
-        href: "?route=dsachallenges",
+        href: "/pages/protected/dashboard/explore",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <Laptop className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Live DSA Challenges",
-        href: "?route=livedsachallenges",
+        href: "/pages/protected/dashboard/live_challenges",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <Rocket className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        ),
+      },
+      {
+        label: "Create DSA Challenge",
+        href: "/pages/protected/create_dsa",
+        icon: (
+          <PenTool className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Try Compiler",
         href: "/pages/protected/compiler",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <PlayCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
     ],
@@ -58,35 +81,35 @@ const links: SidebarLinkProps[] = [
     label: "Quiz Arena",
     href: "#",
     icon: (
-      <IconHourglass className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <BookOpen className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
     sub_links: [
       {
         label: "Online Quiz Test",
-        href: "?route=onlinequiz",
+        href: "/pages/protected/quiz/online_test",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <GraduationCap className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Aptitude Quiz",
-        href: "?route=aptitude",
+        href: "/pages/protected/quiz/aptitude_test",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <Cpu className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Programming Quiz",
-        href: "?route=programming",
+        href: "/pages/protected/quiz/programming",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <Code2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Try MCQ Arena",
         href: "/pages/protected/mcq",
         icon: (
-          <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <PlayCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
     ],
@@ -95,42 +118,42 @@ const links: SidebarLinkProps[] = [
     label: "Try Compiler",
     href: "/pages/protected/compiler",
     icon: (
-      <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <PlayCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
   },
   {
     label: "Leaderboard",
-    href: "?route=leaderboard",
+    href: "/pages/protected/dashboard/leaderboard",
     icon: (
-      <IconTrophy className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <Trophy className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
   },
   {
     label: "Account",
     href: "#",
     icon: (
-      <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      <UserCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
     sub_links: [
       {
         label: "Profile",
         href: "/pages/protected/profile",
         icon: (
-          <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <UserCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Settings",
         href: "#",
         icon: (
-          <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Logout",
         href: "#",
         icon: (
-          <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+          <LogOut className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
     ],

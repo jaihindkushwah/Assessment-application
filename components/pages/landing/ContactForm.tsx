@@ -86,13 +86,16 @@ function ContactForm() {
   }
   return (
     <main className="flex w-full flex-col items-center justify-start sm:justify-center">
-      <div className=" flex items-center mt-5 flex-col md:w-[640px] w-full">
+      <div
+        className="container max-md:pr-0 max-md:pl-0 mt-5"
+        // className=" flex items-center mt-5 flex-col md:w-[500px] w-full"
+      >
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full flex gap-4 flex-col "
           >
-            <span className="flex flex-col sm:flex-row gap-4 ">
+            <span className="flex sm:flex-row gap-4 ">
               <FormField
                 control={form.control}
                 name="name"
@@ -130,7 +133,7 @@ function ContactForm() {
                 )}
               />
             </span>
-            <span className="flex flex-col sm:flex-row gap-4">
+            <span className="flex  sm:flex-row gap-4">
               <FormField
                 control={form.control}
                 name="phoneNo"
@@ -170,7 +173,7 @@ function ContactForm() {
                 )}
               />
             </span>
-            <span className="flex flex-col sm:flex-row gap-4 ">
+            <span className="flex  sm:flex-row gap-4 ">
               <FormField
                 control={form.control}
                 name="name"
@@ -229,12 +232,13 @@ function ContactForm() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               <Button
                 type="submit"
-                className="w-full md:w-1/3 sm:w-1/2 text-[14px] font-normal hover:bg-slate-200 border text-black bg-white"
+                // variant={"secondary"}
+                className="text-[14px] rounded-3xl px-10 font-medium hover:bg-[#1864f0] border text-white bg-[#3418e9]"
               >
-                Submit your message
+                Send
               </Button>
             </div>
           </form>

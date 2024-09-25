@@ -1,12 +1,28 @@
+"use client";
 import React from "react";
-import "./css/styles.css";
+import { RichTextReader } from "@/components/TextEditor";
+import { useCompiler } from "@/contexts/CompilerProvider";
+// import { useParams, useSearchParams } from "next/navigation";
 function ProblemSection() {
+  // const params = useParams();
+  // console.log(params);
+  let { problems: contents } = useCompiler();
+
+  // if (!contents) {
+  //   contents = localStorage.getItem("content");
+  // }
+  console.log(contents);
+
   return (
     <section
-      id="ProblemSection"
-      className="max-h-[98vh] overflow-scroll overflow-x-hidden p-10 font-sans dark:text-white"
+      // id="ProblemSection"
+      className="max-h-[98vh] flex flex-col p-1 pt-8 pb-1 font-sans dark:text-white"
     >
-      <h3>First Missing Positive</h3>
+      <div className="dark:bg-[#0a0e0f] h-full rounded-md overflow-y-auto bg-[#f0f0f0]  overflow-x-hidden ">
+        {contents && <RichTextReader contents={contents} />}
+      </div>
+      {/* <h3>First Missing Positive</h3>
+      
       <p>
         Given an unsorted integer array <code>nums</code>. Return the{" "}
         <em>smallest positive integer</em> that is <em>not present</em> in{" "}
@@ -71,7 +87,7 @@ function ProblemSection() {
         <li>
           <code>-231 &lt;= nums[i] &lt;= 231 - 1</code>
         </li>
-      </ul>
+      </ul> */}
     </section>
   );
 }

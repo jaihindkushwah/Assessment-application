@@ -1,4 +1,5 @@
-const svgToDataUri = require("mini-svg-data-uri");
+// import { nextui } from "@nextui-org/theme";
+// const svgToDataUri = require("mini-svg-data-uri");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -15,8 +16,10 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    // "./node_modules/@nextui-org/theme/dist/components/[object Object].js"
   ],
   prefix: "",
+
   theme: {
     container: {
       center: true,
@@ -120,24 +123,72 @@ const config = {
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "none",
+          },
+        },
+        // dark: {
+        //   css: {
+        //     color: theme("colors.gray.300"),
+        //     '[class~="lead"]': { color: theme("colors.gray.400") },
+        //     a: { color: theme("colors.gray.100") },
+        //     strong: { color: theme("colors.gray.100") },
+        //     "ul > li::before": { backgroundColor: theme("colors.gray.700") },
+        //     hr: { borderColor: theme("colors.gray.800") },
+        //     blockquote: {
+        //       color: theme("colors.gray.100"),
+        //       borderLeftColor: theme("colors.gray.800"),
+        //     },
+        //     h1: { color: theme("colors.gray.100") },
+        //     h2: { color: theme("colors.gray.100") },
+        //     h3: { color: theme("colors.gray.100") },
+        //     h4: { color: theme("colors.gray.100") },
+        //     code: { color: theme("colors.gray.100") },
+        //     "a code": { color: theme("colors.gray.100") },
+        //     pre: {
+        //       color: theme("colors.gray.200"),
+        //       // backgroundColor: theme("colors.gray.800"),
+        //     },
+        //     thead: {
+        //       color: theme("colors.gray.100"),
+        //       borderBottomColor: theme("colors.gray.700"),
+        //     },
+        //     "tbody tr": { borderBottomColor: theme("colors.gray.800") },
+        //   },
+        // },
+        // light: {
+        //   css: {
+        //     pre: {
+        //       backgroundColor: theme("colors.gray.100"),
+        //     },
+        //   },
+        // },
+      }),
     },
   },
+  // variants: {
+  //   extend: {
+  //     typography: ["dark"],
+  //   },
+  // },
   plugins: [
+    require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
     require("tailwindcss-animated"),
+    require("tailwind-scrollbar"),
+    require("tailwind-scrollbar-hide"),
     addVariablesForColors,
-    function ({ matchUtilities, theme }: any) {
-      matchUtilities(
-        {
-          "bg-dot-thick": (value: any) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="2.5"></circle></svg>`
-            )}")`,
-          }),
-        },
-        { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
-      );
-    },
+    // function ({ matchUtilities,theme }: any) {
+    //   matchUtilities(
+    //     {
+    //       bg-dot-thick: (value: any) => ({
+    //         backgroundImage: url(${svgToDataUri(
+    //           <svg xmlns=http://www.w3.org/2000/svg viewBox=0 0 32 32 width=16 height=16 fill=none><circle fill=${value} id=pattern-circle cx=10 cy=10 r=2.5></circle></svg>
+    //         )}),}),},{ values: flattenColorPalette(theme(backgroundColor)),type: color }
+    //   );
+    // },nextui()],
   ],
 } satisfies Config;
 

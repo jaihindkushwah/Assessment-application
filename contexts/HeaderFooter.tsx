@@ -1,6 +1,7 @@
 "use client";
 
-import { useParams, usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import { createContext, useState, useContext, useEffect } from "react";
 
 interface HeaderFooterContextProps {
@@ -42,8 +43,10 @@ export default function HeaderFooterProvider({ children }: Props) {
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [isFooterVisible, setIsFooterVisible] = useState<boolean>(true);
   const path = usePathname();
+  const session = useSession();
 
   useEffect(() => {
+    console.log(session?.data?.user);
     console.log({ path });
 
     const isHeaderVisible = !headerHideList.includes(path);

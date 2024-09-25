@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { HTMLAttributes, ReactNode } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { signOut, useSession } from "next-auth/react";
 
 export const HamburgerMenuPage = () => {
+  const { data: session } = useSession();
   return (
     <HamburgerMenu bgColor={`bg-inherit`} textColor="dark:text-white text-dark">
       <Sheet>
@@ -15,7 +17,7 @@ export const HamburgerMenuPage = () => {
             alt="logo"
             width={1920}
             height={1080}
-            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
+            className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2 z-40"
           />
           <SheetTrigger>
             <span className="text-center text-4xl ">&#8801;</span>
@@ -27,75 +29,40 @@ export const HamburgerMenuPage = () => {
               <HamburgerMenuLink href="/">Home</HamburgerMenuLink>
             </HamburgerMenuItem>
             <HamburgerMenuItem>
-              <HamburgerMenuLink href="/pages/dashboard">
-                About
-              </HamburgerMenuLink>
+              <HamburgerMenuLink href="/#about">About</HamburgerMenuLink>
             </HamburgerMenuItem>
             <HamburgerMenuItem>
-              <HamburgerMenuLink href="/pages/contact">
-                Contact
-              </HamburgerMenuLink>
+              <HamburgerMenuLink href="/#contact">Contact</HamburgerMenuLink>
             </HamburgerMenuItem>
-            <HamburgerMenuItem>
-              <HamburgerMenuLink href="/auth">Login</HamburgerMenuLink>
-            </HamburgerMenuItem>
+            {session?.user.name ? (
+              <>
+                <HamburgerMenuItem>
+                  <HamburgerMenuLink href="/pages/protected/profile">
+                    Profile
+                  </HamburgerMenuLink>
+                </HamburgerMenuItem>
+                <HamburgerMenuItem>
+                  <HamburgerMenuLink href="/pages/protected/dashboard">
+                    Dashboard
+                  </HamburgerMenuLink>
+                </HamburgerMenuItem>
+                <HamburgerMenuItem>
+                  <HamburgerMenuLink href="#" onClick={() => signOut()}>
+                    Logout
+                  </HamburgerMenuLink>
+                </HamburgerMenuItem>
+              </>
+            ) : (
+              <HamburgerMenuItem>
+                <HamburgerMenuLink href="/auth/login">Login</HamburgerMenuLink>
+              </HamburgerMenuItem>
+            )}
           </HamburgerMenuNav>
         </SheetContent>
       </Sheet>
     </HamburgerMenu>
   );
 };
-
-// export const HamburgerMenuPages = () => {
-//   const [open, setOpen] = React.useState(false);
-
-//   const toggle = () => {
-//     setOpen((prevState) => !prevState);
-//   };
-
-//   return (
-//     <div className="max-w-screen relative sm:max-h-14 max-h-12 top-0 z-50 ">
-//       <HamburgerMenu
-//         bgColor={` ${!open ? "bg-inherit" : "bg-indigo-900"}`}
-//         textColor="dark:text-white text-dark"
-//       >
-//         <HamburgerMenuBrand href="/">
-//           {!open ? (
-//             <Image
-//               // src="https://links.papareact.com/a943ae"
-//               src={"/logo2.jpeg"}
-//               alt="logo"
-//               width={1920}
-//               height={1080}
-//               className="rounded-sm sm:h-[43px] sm:w-36 h-[36px] w-28 mb-2"
-//             />
-//           ) : null}
-//         </HamburgerMenuBrand>
-//         <HamburgerMenuToggler toggle={toggle} open={open} />
-//         <HamburgerMenuCollapse open={open}>
-//           <HamburgerMenuNav className="flex flex-col items-center sm:gap-4 gap-2">
-//             <HamburgerMenuItem>
-//               <HamburgerMenuLink href="/">Home</HamburgerMenuLink>
-//             </HamburgerMenuItem>
-//             <HamburgerMenuItem>
-//               <HamburgerMenuLink href="/pages/dashboard">
-//                 About
-//               </HamburgerMenuLink>
-//             </HamburgerMenuItem>
-//             <HamburgerMenuItem>
-//               <HamburgerMenuLink href="/pages/contact">
-//                 Contact
-//               </HamburgerMenuLink>
-//             </HamburgerMenuItem>
-//             <HamburgerMenuItem>
-//               <HamburgerMenuLink href="/auth">Login</HamburgerMenuLink>
-//             </HamburgerMenuItem>
-//           </HamburgerMenuNav>
-//         </HamburgerMenuCollapse>
-//       </HamburgerMenu>
-//     </div>
-//   );
-// };
 
 /* Logic */
 
@@ -143,63 +110,10 @@ function HamburgerMenuBrand({
   );
 }
 
-// interface HamburgerMenuTogglerProps extends HTMLAttributes<HTMLButtonElement> {
-//   toggle: () => void;
-//   open: boolean;
-// }
-// function HamburgerMenuToggler({
-//   open,
-//   toggle,
-//   ...props
-// }: HamburgerMenuTogglerProps) {
-//   return (
-//     <button
-//       type="button"
-//       aria-expanded="false"
-//       aria-label="Toggle navigation"
-//       className={style.toggler}
-//       onClick={toggle}
-//       {...props}
-//     >
-//       {!open ? (
-//         <span className="text-center">&#8801;</span>
-//       ) : (
-//         <span className="text-[24px] text-center ">&#x2715;</span>
-//       )}
-//     </button>
-//   );
-// }
-
 interface HamburgerMenuCollapseProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
   children: ReactNode;
 }
-// function HamburgerMenuCollapse({
-//   children,
-//   open,
-//   ...props
-// }: HamburgerMenuCollapseProps) {
-//   const ref = React.useRef<HTMLDivElement>(null);
-
-//   const inlineStyle = open
-//     ? {
-//         height: ref.current?.scrollHeight,
-//         visibility: "visible" as "visible",
-//         opacity: 1,
-//       }
-//     : { height: 0, visibility: "hidden" as "hidden", opacity: 0 };
-
-//   return (
-//     <div
-//       className={style.collapse}
-//       style={{ ...inlineStyle }}
-//       ref={ref}
-//       {...props}
-//     >
-//       {children}
-//     </div>
-//   );
-// }
 
 interface HamburgerMenuNavProps extends HTMLAttributes<HTMLUListElement> {
   children: ReactNode;

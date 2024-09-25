@@ -3,36 +3,40 @@ import { Textarea } from "@/components/ui/textarea";
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { IconPlus, IconX } from "@tabler/icons-react";
+import { useCompiler } from "@/contexts/CompilerProvider";
 
-const initialTestCases = [{ inputs: "1 2 3" }, { inputs: "2 4 6" }];
+const initialTestCases = [{ inputs: "1 2 3" }];
 
 function TestCasesInput() {
   const [activeTab, setActiveTab] = useState("case1");
   const [testCases, setTestCases] = useState(initialTestCases);
+  // const [testCaseInputs, setTestCaseInputs] = useState("");
+  const { setInputTestCase, inputTestCase } = useCompiler();
 
   const handleActiveTab = (value: any) => {
     setActiveTab(value);
   };
 
-  const addTestCase = () => {
-    if (testCases.length >= 7) return;
-    const newTestCases = [...testCases, { inputs: "" }];
-    setTestCases(newTestCases);
-    setActiveTab(`case${newTestCases.length}`);
-  };
+  // const addTestCase = () => {
+  //   if (testCases.length >= 7) return;
+  //   const newTestCases = [...testCases, { inputs: "" }];
+  //   setTestCases(newTestCases);
+  //   setActiveTab(`case${newTestCases.length}`);
+  // };
 
   const removeTestCase = (index: any) => {
-    const newTestCases = testCases.filter((_, i) => i !== index);
-    setTestCases(newTestCases);
-    if (activeTab === `case${index + 1}`) {
-      setActiveTab(`case${Math.min(index, newTestCases.length)}`);
-    }
+    // const newTestCases = testCases.filter((_, i) => i !== index);
+    // setTestCases(newTestCases);
+    // if (activeTab === `case${index + 1}`) {
+    //   setActiveTab(`case${Math.min(index, newTestCases.length)}`);
+    // }
   };
   const handleInputChange = (index: number, value: string) => {
-    const newTestCases = [...testCases];
-    newTestCases[index].inputs = value;
-    // console.log(newTestCases);
-    setTestCases(newTestCases);
+    // const newTestCases = [...testCases];
+    // newTestCases[index].inputs = value;
+    // // console.log(newTestCases);
+    // setTestCases(newTestCases);
+    setInputTestCase(value);
   };
 
   return (
@@ -61,22 +65,23 @@ function TestCasesInput() {
               Case {index + 1}
             </TabsTrigger>
           ))}
-          {testCases.length < 7 && (
+          {/* {testCases.length < 7 && (
             <button
               onClick={addTestCase}
               className="p-1 w-8 h-8 hover:dark:text-gray-200 hover:text-neutral-800"
             >
               <IconPlus size={16} />
             </button>
-          )}
+          )} */}
         </TabsList>
         {testCases.map((item, index) => (
           <TabsContent key={`content${index + 1}`} value={`case${index + 1}`}>
             <Textarea
               onChange={(e) => handleInputChange(index, e.target.value)}
               className="w-full h-full"
-              rows={4}
-              defaultValue={item.inputs}
+              rows={5}
+              value={inputTestCase}
+              // defaultValue={item.inputs}
             />
           </TabsContent>
         ))}

@@ -18,10 +18,7 @@ export const CardLink = ({
   return (
     <Link
       href={link}
-      className={cn(
-        "flex items-center  justify-start gap-2  group/sidebar py-1",
-        className
-      )}
+      className={cn("gap-2 w-fit group/sidebar py-1", className)}
       {...props}
     >
       <span

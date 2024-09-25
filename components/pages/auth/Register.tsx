@@ -1,5 +1,6 @@
 "use client";
 
+import SpinLoader from "@/components/SpinLoader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -36,7 +37,7 @@ const FormSchema = z
     message: "Passwords do not match",
   });
 function Register() {
-  const { handleRegister, registerError } = useRegister();
+  const { handleRegister, registerError, isLoading } = useRegister();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -55,6 +56,7 @@ function Register() {
   }
   return (
     <main className="flex max-w-screen flex-col items-center justify-start sm:justify-center">
+      {isLoading ? <SpinLoader /> : null}
       <div className=" flex items-center mt-5 flex-col md:w-[640px] sm:w-[560px] w-screen">
         <Form {...form}>
           <form

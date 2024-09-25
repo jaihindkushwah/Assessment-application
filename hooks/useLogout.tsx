@@ -1,18 +1,14 @@
 "use client";
-import {
-  getAuthState,
-  updateLoggedInState,
-  updateProfile,
-  updateToken,
-} from "@/store/auth";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 function useLogout() {
-  const { token } = useSelector(getAuthState);
-  const dispatch = useDispatch();
+  const { data: session } = useSession();
+  const token = session?.user.token;
   const logoutHandler = useCallback(async () => {
+    if (!token) return null;
     try {
       const config = {
         headers: {
@@ -22,12 +18,10 @@ function useLogout() {
       console.log("config", config);
 
       await axios.get("http://127.0.0.1:8080/api/v1/auth/logout", config);
-      dispatch(updateLoggedInState(false));
-      dispatch(updateToken(null));
-      dispatch(updateProfile(null));
+
       localStorage.removeItem("token");
     } catch (error) {}
-  }, [dispatch, token]);
+  }, [token]);
 
   return { logoutHandler };
 }

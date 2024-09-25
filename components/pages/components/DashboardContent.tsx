@@ -54,16 +54,16 @@ const ItemCard = ({ description, title, sub_link }: ItemCardProps) => {
   });
 
   return (
-    <Card className="overflow-x-hidden w-full sm:w-[360px]">
+    <Card className="overflow-x-hidden w-full sm:w-[360px] dark:bg-[#011531] border border-neutral-200 bg-blend-darken dark:border-slate-700">
       <div
         ref={ref as any}
         tabIndex={0} // Make the card focusable
-        className={`w-full transform transition-all duration-500 ease-in-out shadow-lg ${
+        className={`w-full transform transition-all duration-500 ease-in-out  ${
           isVisible ? "translate-x-0 opacity-100" : " translate-x-40 opacity-0"
         }`}
       >
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="text-lg font-medium">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           {sub_link ? (
@@ -87,19 +87,39 @@ const ItemCard = ({ description, title, sub_link }: ItemCardProps) => {
 
 function DashboardContent() {
   return (
-    <div className="flex flex-wrap gap-3">
-      {DashboardCardData.map((_, index) => (
-        <ItemCard {..._} key={index} />
-      ))}
-      {DashboardCardData.map((_, index) => (
-        <ItemCard {..._} key={index + "33"} />
-      ))}
-      {DashboardCardData.map((_, index) => (
-        <ItemCard {..._} key={index + "23"} />
-      ))}
-      {DashboardCardData.map((_, index) => (
-        <ItemCard {..._} key={index + "154"} />
-      ))}
+    <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
+        <span>
+          <h2 className="text-xl font-medium"> Current Events</h2>
+        </span>
+        <div className="flex flex-wrap gap-3">
+          {DashboardCardData.map((_, index) => (
+            <ItemCard {..._} key={index} />
+          ))}
+        </div>
+      </div>
+      <div>
+        <hr className="my-3 h-2" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-medium"> Upcoming Events</h2>
+        <div className="flex flex-wrap gap-3">
+          {DashboardCardData.map((_, index) => (
+            <ItemCard {..._} key={index + "33"} />
+          ))}
+        </div>
+      </div>
+      <div>
+        <hr className="my-3 h-2" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-medium"> Recent Purchase</h2>
+        <div className="flex flex-wrap gap-3">
+          {DashboardCardData.map((_, index) => (
+            <ItemCard {..._} key={index + "330"} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
