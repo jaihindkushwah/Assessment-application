@@ -18,15 +18,8 @@ function Pagination({ totalPages, currentPage }: IPaginationProps) {
     updatedSearchParams.set("page", value + "");
     router.push(path + "?" + updatedSearchParams.toString());
   };
-  // const defValue = useMemo(() => {
-  //   return searchParams.get("page")
-  //     ? parseInt(searchParams.get("page") + "")
-  //     : 1;
-  // }, [searchParams]);
-  // useEffect(() => {
-  //   setTotalPages(totalPages || 1);
-  //   console.log(totalPages);
-  // }, [totalPages]);
+
+  if (totalPages && totalPages <= 1) return null;
   return (
     // <div>
     <PaginationComponent

@@ -21,61 +21,61 @@ const testimonials = [
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Charles Dickens",
+    name: "Charles Dickens1",
     title: "Coding Assessment",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "William Shakespeare",
+    name: "William Shakespeare1",
     title: "Technical Screening",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Edgar Allan Poe",
+    name: "Edgar Allan Poe1",
     title: "Aptitude Assessment",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Jane Austen",
+    name: "Jane Austen1",
     title: "Interview Preparation",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Herman Melville",
+    name: "Herman Melville1",
     title: "Technical Assessment",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Charles Dickens",
+    name: "Charles Dickens2",
     title: "Coding Assessment",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "William Shakespeare",
+    name: "William Shakespeare2",
     title: "Technical Screening",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Edgar Allan Poe",
+    name: "Edgar Allan Poe10",
     title: "Aptitude Assessment",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Jane Austen",
+    name: "Jane Austen10",
     title: "Interview Preparation",
   },
   {
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A quibusdam aspernatur esse fugit sint consequatur nulla inventore odit et amet ipsam mollitia odio repellat consectetur, rerum repudiandae ducimus iste laboriosam.",
-    name: "Herman Melville",
+    name: "Herman Melville12",
     title: "Technical Assessment",
   },
 ];

@@ -1,8 +1,5 @@
 "use client";
 
-import { CardHoverEffectDemo } from "@/components/CardHoverEffectDemo";
-import { HeroHighlightDemo } from "@/components/HeroHighlightDemo";
-import PriceCard from "@/components/PriceCard";
 import { HeroHighlight } from "@/components/ui/hero-highlight";
 import Image from "next/image";
 import { HamburgerMenuPage } from "@/components/HumbergerMenu";

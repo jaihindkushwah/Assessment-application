@@ -5,9 +5,10 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="min-h-[600px] w-full flex font-normal  lg:flex-row font-sans  flex-col bg-white lg:gap-10 dark:bg-gradient-to-b from-[#010164] to-[#040438] py-5 lg:px-10 px-5"
+      className="grid lg:grid-cols-2  grid-cols-1 gap-10  bg-white dark:bg-gradient-to-b from-[#010164] to-[#040438] py-5 lg:px-10 px-5"
+      // className="min-h-[600px] w-full flex font-normal  lg:flex-row font-sans  flex-col bg-white lg:gap-10 dark:bg-gradient-to-b from-[#010164] to-[#040438] py-5 lg:px-10 px-5"
     >
-      <div className="flex-1 flex items-center flex-col md:p-5 p-0 dark:bg-gradient-to-b from-[#010164] to-[#040438] ">
+      <div className="flex-1 flex items-center flex-col md:p-5 p-0 md:dark:bg-gradient-to-b from-[#010164] to-[#040438] ">
         <span className="h-14 w-full"></span>
         <p className=" text-xl sm:text-2xl font-normal  mt-5 ">Contact Form</p>
         <ContactForm />

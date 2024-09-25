@@ -86,21 +86,21 @@ const links: SidebarLinkProps[] = [
     sub_links: [
       {
         label: "Online Quiz Test",
-        href: "?route=onlinequiz",
+        href: "/pages/protected/quiz/online_test",
         icon: (
           <GraduationCap className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Aptitude Quiz",
-        href: "?route=aptitude",
+        href: "/pages/protected/quiz/aptitude_test",
         icon: (
           <Cpu className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
       },
       {
         label: "Programming Quiz",
-        href: "?route=programming",
+        href: "/pages/protected/quiz/programming",
         icon: (
           <Code2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),

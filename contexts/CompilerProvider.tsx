@@ -1,5 +1,5 @@
 "use client";
-import LoaderAnimation from "@/components/LoaderAnimation";
+import SpinLoader from "@/components/SpinLoader";
 import { useCompilerAPI } from "@/hooks/useCompilerAPI";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
@@ -167,21 +167,7 @@ function CompilerProvider({ children }: CompilerProviderProps) {
         handleFinalSubmit,
       }}
     >
-      {isLoading ? (
-        <LoaderAnimation
-          className="fixed top-0 left-0 w-full h-full z-40 dark:bg-[#acabab]"
-          style={{ backgroundColor: "#acabab", opacity: 0.3 }}
-          type="roundLoading"
-          animationStyle={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "120px",
-            height: "120px",
-          }}
-        />
-      ) : null}
+      {isLoading ? <SpinLoader /> : null}
       {children}
     </CompilerContext.Provider>
   );
