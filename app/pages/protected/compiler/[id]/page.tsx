@@ -1,11 +1,7 @@
 import Compiler from "@/components/pages/compiler/Compiler";
 
-export function CompilerPage() {
-  return (
-    // <CompilerProvider>
-    <Compiler />
-    // </CompilerProvider>
-  );
+export function Page() {
+  return <Compiler />;
 }
 
-export default CompilerPage;
+export default Page;
