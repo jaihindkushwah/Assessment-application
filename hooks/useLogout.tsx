@@ -1,10 +1,4 @@
 "use client";
-import {
-  getAuthState,
-  updateLoggedInState,
-  updateProfile,
-  updateToken,
-} from "@/store/auth";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useCallback } from "react";

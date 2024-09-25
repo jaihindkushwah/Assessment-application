@@ -4,7 +4,6 @@
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
 
 type initialStateProps = {
   name: string;
