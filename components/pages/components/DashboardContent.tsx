@@ -39,6 +39,8 @@ const useIntersectionObserver = (options: any) => {
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
+        // clean up ref.current
+        ref.current = null;
       }
     };
   }, [options, hasIntersected]);
