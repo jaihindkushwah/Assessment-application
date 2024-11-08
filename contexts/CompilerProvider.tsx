@@ -90,7 +90,8 @@ function CompilerProvider({ children }: CompilerProviderProps) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const params = useParams();
-  const { id } = params as { id: string };
+  let { id } = params as { id: string };
+  id = id || "66ebf18a2bd02ef2c9093049";
   const handleFinalSubmit = useCallback(() => {
     setIsLoading(true);
     handleRun({
@@ -138,7 +139,7 @@ function CompilerProvider({ children }: CompilerProviderProps) {
       }
       getProblemById(id).then((res) => {
         setProblems(res.content);
-        console.log(res);
+        // console.log(res);
       });
     } catch (error) {
       console.log(error);

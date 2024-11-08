@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 export default function Page() {
   return (
     <div>
-      <Compiler />;
+      <Compiler />
     </div>
   );
 }
